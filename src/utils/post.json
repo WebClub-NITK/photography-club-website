@@ -1,0 +1,26 @@
+[
+  {
+    "id":"1",
+    "title":"Rockstar",
+    "date":"15th Jan 2024",
+    "img":["/photo-1.jpg"],
+    "likes":1,
+    "caption":"This is a very lengthy photo reel so I need a read more to expand on the content provided. I would want to make it longer than expected to test the read more functionality"
+  },
+  {
+    "id":"2",
+    "title":"Singer",
+    "date":"10th Jan 2024",
+    "img":["/photo-2.jpg"],
+    "likes":4,
+    "caption":"This is a very short caption"
+  },
+  {
+    "id":"3",
+    "title":"Band",
+    "date":"13th Jan 2024",
+    "img":["/photo-1.jpg","/photo-2.jpg","/photo-3.jpg"],
+    "likes":6,
+    "caption":"This is a carousel and not i want to test the data model as well as the length of the caption"
+  }
+]
