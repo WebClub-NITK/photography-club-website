@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export function TeamMember({ name, role, imageUrl }) {
     return (
         <div className="relative group">
