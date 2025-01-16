@@ -1,38 +1,38 @@
-import React,{useState} from 'react'
-import photos from '../../utils/photos.json'
+import React, { useState } from 'react';
+import photos from '../../utils/photos.json';
+
 const Photos = () => {
-  const [viewAll, setViewAll] = useState(false)
+  const [viewAll, setViewAll] = useState(false);
+
   return (
     <>
-    <div className='grid grid-cols-12 gap-4 mx-32 max-xl:mx-16 max-md:mx-8 max-sm:mx-16'>
-      {(photos.length <=6 || viewAll)? photos.map((photo)=>(
-        <>
-          <img src={photo.img} className='col-span-4 max-lg:col-span-6 max-sm:col-span-12 h-96 w-96'/>
-        </>
-      )): photos.slice(0,6).map((photo)=>(
-        <>
-          <img src={photo.img} className='col-span-4 max-lg:col-span-6 max-sm:col-span-12 h-96 w-96'/>
-        </>
-      ))}
-    </div>
-      {(!viewAll && photos.length>6)?(
-        <>
-        <div className="text-center mt-4">
-            <button className="px-4 py-2 bg-gray-800 text-white rounded-lg"
-            onClick={()=>setViewAll(true)}>View All</button>
-        </div>
-        </>
-      ):viewAll && 
-        <>
-          <div className="text-center mt-4">
-            <button className="px-4 py-2 bg-gray-800 text-white rounded-lg"
-            onClick={()=>setViewAll(false)}>View Less</button>
+      <div className='grid grid-cols-12 gap-[2rem] max-2xl:px-8 mx-auto max-w-[1450px]'>
+        {(photos.length <= 6 || viewAll ? photos : photos.slice(0, 6)).map((photo, index) => (
+          <div 
+            key={index} 
+            className='col-span-4 max-lg:col-span-6 max-sm:col-span-12'
+          >
+            <img 
+              src={photo.img} 
+              alt={`Photo ${index + 1}`}
+              className='max-[400px]:w-[320px] w-full aspect-square rounded-md'
+            />
           </div>
-        </>
-      }
-    
-    </>
-  )
-}
+        ))}
+      </div>
 
-export default Photos
+      {photos.length > 6 && (
+        <div className="text-center mt-8 mb-12">
+          <button 
+            className="px-6 py-2.5 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors tracking-wider"
+            onClick={() => setViewAll(!viewAll)}
+          >
+            {viewAll ? 'View Less' : 'View All'}
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Photos;

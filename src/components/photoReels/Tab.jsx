@@ -14,6 +14,7 @@ const Tab = ({ activeTab, setActiveTab }) => {
         </svg>
         <button
           onClick={() => setActiveTab('Photos')}
+          className='text-xl'
         >
           Photos
         </button>
@@ -29,6 +30,7 @@ const Tab = ({ activeTab, setActiveTab }) => {
             </svg>
         <button
           onClick={() => setActiveTab('Reels')}
+          className='text-xl'
         >
           Reels
         </button>
