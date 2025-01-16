@@ -3,6 +3,7 @@ import HomePage from "./pages/home"
 import PhotoReels from './pages/photoreel'
 import Header from"./components/header"
 import Footer from "./components/footer"
+import PortfolioPage from "./pages/portfolio"
 
 export default function App() {
 	return (
@@ -10,7 +11,8 @@ export default function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path='/photo-reels' element={<PhotoReels/>}/>
+				<Route path="/portfolio" element={<PortfolioPage />} />
+				<Route path="/photo-reels" element={<PhotoReels/>}/>
 			</Routes>
 			<Footer />
 		</div>
