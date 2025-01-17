@@ -61,7 +61,7 @@ export default function Header() {
                 </div>
 
             </header >
-            <div className={nav ? 'z-20 text-primary fixed left-0 top-0 w-[70%] border-r-2 border-secondary h-screen bg-green/50 backdrop-blur-2xl ease-in duration-100' : 'fixed left-[-100%] ease-in duration-100'}>
+            <div className={`fixed ease-in duration-100 ${nav ? "z-20 text-primary left-0 top-0 w-[70%] border-r-2 border-secondary h-screen bg-green/50 backdrop-blur-2xl" : "left-[-100%]"}`}>
                 <div className="pt-10 pr-4 flex justify-between flex-col items-end w-[100%] text-primary">
                     <div onClick={handleNav} >
                         <AiOutlineClose size={30} />
@@ -90,7 +90,7 @@ export default function Header() {
                         </div>
                     </ul>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
