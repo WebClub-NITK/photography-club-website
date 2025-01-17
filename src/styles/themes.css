@@ -1,0 +1,23 @@
+[data-theme="light"] {
+    --primary: #000000;
+    --secondary: #C8C8C8;
+    --tertiary: #9F9D9D;
+    --complement-primary: #FFFFFF;
+    --complement-secondary: #e2e2e2;
+    --accent-1: #291D1D;
+    --accent-2: #C4C4C4;
+    --highlight: #9EE068;
+    --navbar: rgba(255, 239, 239, 0.8);
+}
+
+[data-theme="dark"] {
+    --primary: #FFFFFF;
+    --secondary: #e3e3e3;
+    --tertiary: #9F9D9D;
+    --complement-primary: #000000;
+    --complement-secondary: #1a1a1a;
+    --accent-1: #291D1D;
+    --accent-2: #C4C4C4;
+    --highlight: #9EE068;
+    --navbar: rgba(20, 20, 20, 0.8);
+}
