@@ -36,14 +36,14 @@ export default function Header() {
                     <Link to="/">
                         Events
                     </Link>
-                    <Link to="/">
+                    <Link to="/portfolio">
                         Members
                     </Link>
                     <Link to="/">
                         Blogs
                     </Link>
                     |
-                    <Link to="/">
+                    <Link to="/photo-reels">
                         <div className="flex items-center gap-2">
                             <FiCamera size={20} />
                             <p>Photo Reel</p>
