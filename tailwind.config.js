@@ -16,6 +16,7 @@ export default {
       },
       fontFamily: {
         test: ['Times New Roman', 'serif'],
+        playfair: ['Playfair Display', 'serif'],
         dmSans: ['DM Sans', 'sans-serif'],
         inter: ['Inter', 'sans-serif'], // Add Inter font
       },
