@@ -1,7 +1,7 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
-function ManualScroll({ onScroll, currentIndex, totalImages }) {
+function ScrollButtons({ onScroll, currentIndex, totalImages }) {
     return (
         <div className="flex flex-row gap-3">
             <button
@@ -22,4 +22,4 @@ function ManualScroll({ onScroll, currentIndex, totalImages }) {
     )
 }
 
-export default ManualScroll
+export default ScrollButtons
