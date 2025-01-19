@@ -64,7 +64,7 @@ function Hero({ photos }) {
             <p className="font-playfair font-medium text-[48px] leading-[1.1] text-primary">
                 Captured by us, celebrated by all.
             </p>
-            <div className="flex flex-col items-start gap-4 pt-5 md:flex-row-reverse">
+            <div className="flex flex-col items-start gap-4 pt-2 md:flex-row-reverse">
                 {/* Photo Slider */}
                 <div
                     className="overflow-x-auto overflow-y-hidden"
@@ -83,13 +83,13 @@ function Hero({ photos }) {
                     </div>
                 </div>
                 {/* Photo Info */}
-                <div className="flex flex-col gap-4 pt-5 md:w-[300px]">
+                <div className="flex flex-col gap-4 pt-2 md:w-[300px]">
                     <div>
                         <p className="font-playfair font-medium text-[16px] leading-[1.2] 
                             text-primary italic">
                             {photos[currentImageIndex].title}
                         </p>
-                        <div className="flex flex-col gap-4 py-7">
+                        <div className="flex flex-col gap-4 py-4">
                             <p className="flex flex-row items-center gap-3 text-primary">
                                 <IoLocationOutline size={20} />
                                 <p>{photos[currentImageIndex].location}</p>
