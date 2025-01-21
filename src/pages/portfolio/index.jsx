@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from '../../components/tabs'
 import { TeamShowcase } from '../../components/team/team_showcase'
-
+import SearchBar from "../../components/searchbar/index"
 const PortfolioPage = () => {
   return (
     <>
@@ -13,6 +13,7 @@ const PortfolioPage = () => {
           <span className="text-md opacity-60 sm:text-lg lg:text-xl lg:max-w-2xl text-center">
             Meet our diverse team of class photographers, designers
           </span>
+          <SearchBar/>
         </div>
 
 
