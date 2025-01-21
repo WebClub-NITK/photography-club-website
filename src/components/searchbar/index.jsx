@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
-
-const SearchBar = ({ onSearch, placeholder = "Search..." }) => {
+import { useContext } from 'react';
+import { TabContext } from '../../context/TabContext';
+const SearchBar = ({placeholder = "Search..." }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const { searchQuery, setSearchQuery } = useContext(TabContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(searchTerm);
+    setSearchQuery(searchTerm);
   };
 
   const clearSearch = () => {
     setSearchTerm('');
-    onSearch('');
+    setSearchQuery('');
   };
 
   return (
