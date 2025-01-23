@@ -5,13 +5,14 @@ import { MdOutlineOpenInNew } from "react-icons/md";
 import ScrollView from "./ScrollView";
 import { useRef, useState } from "react";
 import { Link } from "react-router";
+import PropTypes from 'prop-types';
 
 function Hero({ photos }) {
     const scrollContainerRef = useRef(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     return (
-        <div className="flex flex-col gap-4 py-10">
+        <div className="flex flex-col py-10">
             <Link to="/photo-reels">
                 <p className="flex flex-row items-center gap-2 pt-3 
                     font-bold text-[14px] text-tertiary uppercase">
@@ -19,28 +20,31 @@ function Hero({ photos }) {
                     <MdOutlineOpenInNew size={20} />
                 </p>
             </Link>
-            <p className="font-playfair font-medium text-[48px] leading-[1.1] text-primary">
+            <p className="font-playfair font-medium text-[48px] leading-[1.1] text-primary md:py-2">
                 Captured by us, celebrated by all.
             </p>
-            <div className="flex flex-col items-start gap-4 pt-2 md:flex-row-reverse">
+            <div className="flex flex-col items-start gap-4 pt-4 md:flex-row-reverse">
                 {/* Photo Slider */}
-                <div
-                    className="overflow-x-hidden overflow-y-hidden"
-                    ref={scrollContainerRef}
-                >
-                    <div className="flex flex-row items-start gap-5">
-                        {photos.map((image, index) => (
-                            <img
-                                src={image.image}
-                                alt="club-gallery"
-                                key={index}
-                                className="w-full max-h-[450px] rounded-[8px] object-contain"
-                            />
-                        ))}
+                <div className="relative overflow-visible">
+                    <div
+                        className="overflow-x-hidden overflow-y-hidden"
+                        ref={scrollContainerRef}
+                    >
+                        <div className="flex flex-row items-start gap-5 overflow-visible">
+                            {photos.map((image, index) => (
+                                <img
+                                    src={image.image}
+                                    alt="club-gallery"
+                                    key={index}
+                                    className={`overflow-visible w-full max-h-[500px] rounded-[8px] object-contain transition-all duration-100 ease-in
+                                    ${index == currentImageIndex ? "brightness-100" : "brightness-90 grayscale-[0.25]"}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
                 {/* Photo Info */}
-                <div className="flex flex-col gap-4 pt-2 md:w-[300px]">
+                <div className="flex flex-col gap-4 pt-2 md:w-[400px]">
                     <div>
                         <p className="font-playfair font-medium text-[16px] leading-[1.2] 
                             text-primary italic">
@@ -80,5 +84,6 @@ function Hero({ photos }) {
         </div>
     )
 }
+
 
 export default Hero

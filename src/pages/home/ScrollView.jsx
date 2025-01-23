@@ -78,7 +78,7 @@ function ScrollView({
     const animateScroll = (container, targetScroll) => {
         const startScroll = container.scrollLeft;
         const distance = targetScroll - startScroll;
-        const duration = Math.abs(distance * 2); // Animation duration in ms
+        const duration = Math.abs(distance * 1); // Animation duration in ms
         const startTime = performance.now();
 
         const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3); // Smooth easing function
@@ -104,13 +104,21 @@ function ScrollView({
         const maxScroll = container.scrollWidth - container.clientWidth;
 
         if (scrollType === "single") {
-            // Hero-style full-width scroll
+            // Get the first image to use its width
+            const images = container.getElementsByTagName('img');
+            if (images.length === 0) return;
+
+            const firstImage = images[0];
+            const imageRect = firstImage.getBoundingClientRect();
+            const singleImageWidth = imageRect.width;
+
+            // Scroll by single image width + gap
             const scrollAmount = direction === 'next'
-                ? container.clientWidth + 20
-                : -(container.clientWidth + 20);
+                ? singleImageWidth + 20  // 20px is the gap
+                : -(singleImageWidth + 20);
 
             const targetScroll = container.scrollLeft + scrollAmount;
-            animateScroll(container, targetScroll);
+            animateScroll(container, Math.min(maxScroll, Math.max(0, targetScroll)));
         } else {
             // Gallery-style view scroll with snap
             if (direction === 'prev' && currentIndex === 1) {

@@ -62,6 +62,15 @@ const topPhotos = [
         photographer: "EFGH",
         link: "Link",
     },
+    {
+        id: 3,
+        image: photo1,
+        title: "Mountain View",
+        location: "Mountain",
+        date: "2024-01-01",
+        photographer: "EFGH",
+        link: "Link",
+    },
 ]
 
 const stats = [

@@ -21,8 +21,8 @@ export default function Header() {
                 z-10
                 fixed top-0 left-0 right-0
                 h-[70px]
-                bg-white/80 backdrop-blur-xl
-                border-b border-gray-100
+                bg-white/80 backdrop-blur-lg
+                border-b border-gray-200
                 flex justify-between items-center
                 px-container-px md:px-container-px-md
             ">
@@ -60,7 +60,7 @@ export default function Header() {
             </header>
 
             {/* Mobile Menu */}
-            <div className={`fixed ease-in duration-200 ${nav ? "z-20 left-0 top-0 w-[70%] h-screen bg-white/95 backdrop-blur-md" : "left-[-100%]"}`}>
+            <div className={`fixed ease-in duration-200 ${nav ? "z-20 left-0 top-0 w-[70%] border-r border-gray-200 h-screen bg-white/95 backdrop-blur-md" : "left-[-100%]"}`}>
                 <div className="px-container-px py-8 flex flex-col h-full">
                     <div className="flex justify-between items-center">
                         <img

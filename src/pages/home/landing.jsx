@@ -2,6 +2,8 @@ import { ReactTyped } from "react-typed";
 import { FiCamera } from "react-icons/fi";
 import Button from "../../components/Button";
 import landingImg from "../../assets/images/landing.png";
+import { IoIosArrowDown } from "react-icons/io";
+import { TbSpeakerphone } from "react-icons/tb";
 import PropTypes from 'prop-types';
 
 function Landing({ onJoin, specialNotices }) {
@@ -29,13 +31,38 @@ function Landing({ onJoin, specialNotices }) {
                 </div>
                 <div className="mt-8">
                     <ReactTyped
-                        strings={specialNotices}
+                        strings={
+                            specialNotices.map(notice => `📢 ${notice}`)
+                        }
                         typeSpeed={50}
                         backSpeed={50}
                         loop
                         className="px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm text-black text-sm md:text-base font-medium"
                     />
                 </div>
+            </div>
+            <div className="absolute bottom-0 left-0 w-full h-[100px] flex items-center justify-center md:hidden"
+                onClick={() => {
+                    const targetHeight = document.querySelector('.max-w-container').offsetTop;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetHeight - 50 - startPosition;
+                    const duration = 300;
+                    let start = null;
+
+                    const smoothScroll = (timestamp) => {
+                        if (!start) start = timestamp;
+                        const progress = timestamp - start;
+                        const progressPercentage = Math.min(progress / duration, 1);
+                        window.scrollTo(0, startPosition + distance * progressPercentage);
+                        if (progress < duration) {
+                            window.requestAnimationFrame(smoothScroll);
+                        }
+                    };
+
+                    window.requestAnimationFrame(smoothScroll);
+                }}
+            >
+                <span className="text-black text-sm md:text-base font-medium">Scroll down</span> <IoIosArrowDown className="w-5 h-5" />
             </div>
         </div>
     )

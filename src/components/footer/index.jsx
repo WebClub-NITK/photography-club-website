@@ -3,7 +3,7 @@ import { FiCamera, FiInstagram, FiTwitter, FiYoutube } from "react-icons/fi"
 
 export default function Footer() {
     return (
-        <footer className="bg-white border-t border-gray-100">
+        <footer className="bg-white border-t border-gray-200">
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
@@ -56,7 +56,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-12 pt-8 border-t border-gray-100">
+                <div className="mt-12 pt-8 border-t border-gray-200">
                     <p className="text-center text-sm text-gray-600">
                         © {new Date().getFullYear()} Photography Club NITK. All rights reserved.
                     </p>
