@@ -1,45 +1,49 @@
-import landingImg from "../../assets/images/landing.png"
-import { Squircle } from 'corner-smoothing'
 import { ReactTyped } from "react-typed";
 import { FiCamera } from "react-icons/fi";
+import Button from "../../components/Button";
+import landingImg from "../../assets/images/landing.png";
+import PropTypes from 'prop-types';
 
 function Landing({ onJoin, specialNotices }) {
     return (
-        <div>
-            <div className="relative drop-shadow-xl">
-                <Squircle
-                    bottomRightCornerRadius={60}
-                    bottomLeftCornerRadius={60}
-                    cornerSmoothing={1}
-                    preserveSmoothing={true}
-                >
-                    <img src={landingImg} alt="landing" className="w-full h-[430px] top-[100px] object-cover" />
-                </Squircle>
-                <div className="absolute h-[430px] inset-0 flex flex-col items-center justify-center">
-                    <h1 className="text-black text-[50px] font-light text-center leading-[0.9] drop-shadow-[0_0px_3px_rgba(255,255,255,1)]">
-                        The best place to <span className="text-red-600 font-playfair italic">Focus</span> on<br />your <span className="text-red-600 font-playfair italic">Craft</span>
-                    </h1>
-                    <p className="pt-4 px-2  max-w-[400px] text-center text-black text-[16px] font-light">
-                        A community at NITK where you can show the world from your perspective.
-                    </p>
-                    <button onClick={onJoin} className="max-w-[200px] bg-black text-white text-[14px] px-4 py-2 rounded-[8px] mt-4 hover:bg-red-400 transition-all duration-200 hover:drop-shadow-xl">
-                        <span className="flex justify-center items-center gap-2">
-                            Join the community <FiCamera />
-                        </span >
-                    </button>
-                    <p className="pt-5 px-1 max-w-[400px] text-center font-bold text-[14px]">
-                        <ReactTyped
-                            strings={specialNotices}
-                            typeSpeed={50}
-                            backSpeed={50}
-                            loop
-                            className="p-1 px-2 rounded-[10px] bg-gray-200 text-black"
-                        />
-                    </p>
+        <div className="relative h-screen">
+            <img src={landingImg} alt="landing" className="w-full h-full object-cover absolute inset-0" />
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-container-px md:px-container-px-md">
+                <h1 className="text-black text-[40px] md:text-[60px] font-light text-center leading-[1.1]">
+                    The best place to <span className="text-red-500 font-playfair italic">Focus</span> on<br />your <span className="text-red-500 font-playfair italic">Craft</span>
+                </h1>
+                <p className="pt-6 px-4 max-w-[500px] text-center text-black text-base md:text-lg font-light">
+                    A community at NITK where you can show the world from your perspective.
+                </p>
+                <div className="mt-10">
+                    <Button 
+                        onClick={onJoin}
+                        icon={<FiCamera className="w-5 h-5" />}
+                        variant="primary"
+                        size="lg"
+                        className="rounded-full min-w-[200px] bg-black text-white hover:bg-black/90"
+                    >
+                        Join the community
+                    </Button>
+                </div>
+                <div className="mt-8">
+                    <ReactTyped
+                        strings={specialNotices}
+                        typeSpeed={50}
+                        backSpeed={50}
+                        loop
+                        className="px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm text-black text-sm md:text-base font-medium"
+                    />
                 </div>
             </div>
-        </div >
+        </div>
     )
+}
+
+Landing.propTypes = {
+    onJoin: PropTypes.func.isRequired,
+    specialNotices: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default Landing

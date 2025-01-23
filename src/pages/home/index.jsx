@@ -13,11 +13,13 @@ export default function HomePage() {
     const specialNotices = ["Recruitment for 2028 batch has began."]
     const onJoin = (e) => {
         e.preventDefault();
+        console.log("Join button clicked");
         // redirect to the most recent recruitment blog post
     }
 
     const learnMore = (e) => {
         e.preventDefault();
+        console.log("Learn more button clicked");
         // redirect to the learn more page
     }
 
