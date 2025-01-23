@@ -60,7 +60,7 @@ export default function Header() {
             </header>
 
             {/* Mobile Menu */}
-            <div className={`fixed ease-in duration-200 ${nav ? "z-20 left-0 top-0 w-[70%] h-screen bg-white/95 backdrop-blur-xl" : "left-[-100%]"}`}>
+            <div className={`fixed ease-in duration-200 ${nav ? "z-20 left-0 top-0 w-[70%] h-screen bg-white/95 backdrop-blur-md" : "left-[-100%]"}`}>
                 <div className="px-container-px py-8 flex flex-col h-full">
                     <div className="flex justify-between items-center">
                         <img

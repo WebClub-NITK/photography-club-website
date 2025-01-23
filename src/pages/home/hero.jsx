@@ -2,55 +2,13 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { FiCamera } from "react-icons/fi";
 import { MdOutlineOpenInNew } from "react-icons/md";
-import ScrollButtons from "./scrollbuttons";
+import ScrollView from "./ScrollView";
 import { useRef, useState } from "react";
 import { Link } from "react-router";
 
 function Hero({ photos }) {
     const scrollContainerRef = useRef(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    const handleScroll = () => {
-        if (!scrollContainerRef.current) return;
-
-        const container = scrollContainerRef.current;
-
-        // Get all image elements
-        const images = container.getElementsByTagName('img');
-        if (images.length === 0) return;
-
-        // Get the container's left position
-        const containerLeft = container.getBoundingClientRect().left;
-        const containerCenter = containerLeft + (container.clientWidth / 2);
-
-        // Find the image closest to the center
-        let closestImage = 0;
-        let minDistance = Infinity;
-
-        Array.from(images).forEach((img, index) => {
-            const imgRect = img.getBoundingClientRect();
-            const imgCenter = imgRect.left + (imgRect.width / 2);
-            const distance = Math.abs(containerCenter - imgCenter);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestImage = index;
-            }
-        });
-
-        setCurrentImageIndex(closestImage);
-    };
-
-    const scrollTo = (direction) => {
-        if (!scrollContainerRef.current) return;
-
-        const container = scrollContainerRef.current;
-        const scrollAmount = container.clientWidth;
-        container.scrollBy({
-            left: direction === 'next' ? scrollAmount : -scrollAmount,
-            behavior: 'smooth'
-        });
-    };
 
     return (
         <div className="flex flex-col gap-4 py-10">
@@ -67,9 +25,8 @@ function Hero({ photos }) {
             <div className="flex flex-col items-start gap-4 pt-2 md:flex-row-reverse">
                 {/* Photo Slider */}
                 <div
-                    className="overflow-x-auto overflow-y-hidden"
+                    className="overflow-x-hidden overflow-y-hidden"
                     ref={scrollContainerRef}
-                    onScroll={handleScroll}
                 >
                     <div className="flex flex-row items-start gap-5">
                         {photos.map((image, index) => (
@@ -110,10 +67,13 @@ function Hero({ photos }) {
                             </Link>
                         </div>
                     </div>
-                    <ScrollButtons
-                        onScroll={scrollTo}
+                    <ScrollView
                         currentIndex={currentImageIndex}
+                        setCurrentIndex={setCurrentImageIndex}
                         totalImages={photos.length}
+                        scrollType="single"
+                        containerRef={scrollContainerRef}
+                        centerCalculation={true}
                     />
                 </div>
             </div>

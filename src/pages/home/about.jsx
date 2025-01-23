@@ -1,33 +1,10 @@
-import ScrollButtons from './scrollbuttons'
+import ScrollView from './ScrollView'
 import { useState, useRef } from 'react'
 
 
 function About({ clubGallery, stats, learnMore }) {
-    const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
     const galleryRef = useRef(null);
-
-    const handleGalleryScroll = () => {
-        if (!galleryRef.current) return;
-
-        const container = galleryRef.current;
-        const scrollLeft = container.scrollLeft;
-        const imageWidth = 200 + 16; // image width (200px) + gap (16px)
-
-        // Calculate which image is closest to the center
-        const imageIndex = Math.round(scrollLeft / imageWidth);
-        setCurrentGalleryIndex(Math.min(Math.max(0, imageIndex), clubGallery.length - 1));
-    };
-
-    const scrollGallery = (direction) => {
-        if (!galleryRef.current) return;
-
-        const container = galleryRef.current;
-        const scrollAmount = 200 + 16; // image width + gap
-        container.scrollBy({
-            left: direction === 'next' ? scrollAmount : -scrollAmount,
-            behavior: 'smooth'
-        });
-    };
+    const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
 
     return (
         <div>
@@ -68,16 +45,19 @@ function About({ clubGallery, stats, learnMore }) {
                     <p className="text-tertiary text-[14px] font-bold uppercase pt-3">
                         Club Gallery
                     </p>
-                    <ScrollButtons
-                        onScroll={scrollGallery}
+                    <ScrollView
                         currentIndex={currentGalleryIndex}
+                        setCurrentIndex={setCurrentGalleryIndex}
                         totalImages={clubGallery.length}
+                        scrollType="view"
+                        containerRef={galleryRef}
+                        imageWidth={200}
+                        imageGap={16}
                     />
                 </div>
                 <div
-                    className="overflow-x-auto overflow-y-hidden"
+                    className="overflow-x-hidden overflow-y-hidden"
                     ref={galleryRef}
-                    onScroll={handleGalleryScroll}
                 >
                     <div className="flex flex-row items-start gap-4">
                         {clubGallery.map((image, index) => (
