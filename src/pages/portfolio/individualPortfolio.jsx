@@ -4,7 +4,7 @@ import { ArrowLeft, Camera, Mail, Instagram, Globe } from "lucide-react";
 import PhotoGrid from "../../components/portfolio/PhotoGrid";
 import UserCard from "../../components/portfolio/UserCard";
 
-const IndividualPortfoli = () => {
+const IndividualPortfolio = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
@@ -59,4 +59,4 @@ const IndividualPortfoli = () => {
   );
 };
 
-export default IndividualPortfoli;
+export default IndividualPortfolio;
