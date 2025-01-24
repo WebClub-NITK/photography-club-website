@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { useContext } from 'react';
 import { TabContext } from '../../context/TabContext';
-const SearchBar = ({placeholder = "Search..." }) => {
+
+const SearchBar = ({ placeholder = "Search..." }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { searchQuery, setSearchQuery } = useContext(TabContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchQuery(searchTerm);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevents the default form submit behavior
+      setSearchQuery(searchTerm);
+    }
   };
 
   const clearSearch = () => {
@@ -29,6 +37,7 @@ const SearchBar = ({placeholder = "Search..." }) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={placeholder}
+            onKeyDown={handleKeyDown}  // Added keydown handler
             className="w-full py-3 pl-12 pr-12 text-base border-2 rounded-full 
                      shadow-sm focus:outline-none focus:border-blue-500 
                      focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
