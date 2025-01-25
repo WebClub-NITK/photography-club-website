@@ -1,9 +1,10 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 import PropTypes from 'prop-types';
 
 function ScrollView({
+    speed = 1,
     currentIndex,
     setCurrentIndex,
     totalImages,
@@ -13,6 +14,10 @@ function ScrollView({
     imageGap = 16,
     centerCalculation = false,
 }) {
+    const [maxScrollPosition, setMaxScrollPosition] = useState(0);
+    const [isScrolling, setIsScrolling] = useState(false);
+    const isAnimating = useRef(false);
+
     const calculateImagesPerView = useCallback((container) => {
         if (!container) return 1;
         if (scrollType === "single") return 1;
@@ -21,6 +26,26 @@ function ScrollView({
         const imageWidthWithGap = imageWidth + imageGap;
         return Math.floor(containerWidth / imageWidthWithGap);
     }, [scrollType, imageWidth, imageGap]);
+
+    useEffect(() => {
+        if (!containerRef.current) return;
+
+        const calculateMaxPosition = () => {
+            if (scrollType === "single") {
+                setMaxScrollPosition(totalImages - 1);
+            } else {
+                const imagesPerView = calculateImagesPerView(containerRef.current);
+                setMaxScrollPosition(Math.max(0, Math.ceil(totalImages / imagesPerView) - 1));
+            }
+        };
+
+        calculateMaxPosition();
+
+        const resizeObserver = new ResizeObserver(calculateMaxPosition);
+        resizeObserver.observe(containerRef.current);
+
+        return () => resizeObserver.disconnect();
+    }, [containerRef, scrollType, totalImages, calculateImagesPerView]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -78,10 +103,13 @@ function ScrollView({
     const animateScroll = (container, targetScroll) => {
         const startScroll = container.scrollLeft;
         const distance = targetScroll - startScroll;
-        const duration = Math.abs(distance * 1); // Animation duration in ms
+        const duration = Math.abs(distance * 1 * (1 / speed));
         const startTime = performance.now();
 
-        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3); // Smooth easing function
+        setIsScrolling(true);
+        isAnimating.current = true;
+
+        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
         const animate = (currentTime) => {
             const elapsed = currentTime - startTime;
@@ -92,6 +120,9 @@ function ScrollView({
 
             if (progress < 1) {
                 requestAnimationFrame(animate);
+            } else {
+                setIsScrolling(false);
+                isAnimating.current = false;
             }
         };
 
@@ -99,12 +130,13 @@ function ScrollView({
     };
 
     const scrollTo = (direction) => {
+        if (isScrolling || isAnimating.current) return;
+
         if (!containerRef.current) return;
         const container = containerRef.current;
         const maxScroll = container.scrollWidth - container.clientWidth;
 
         if (scrollType === "single") {
-            // Get the first image to use its width
             const images = container.getElementsByTagName('img');
             if (images.length === 0) return;
 
@@ -112,15 +144,13 @@ function ScrollView({
             const imageRect = firstImage.getBoundingClientRect();
             const singleImageWidth = imageRect.width;
 
-            // Scroll by single image width + gap
             const scrollAmount = direction === 'next'
-                ? singleImageWidth + 20  // 20px is the gap
+                ? singleImageWidth + 20
                 : -(singleImageWidth + 20);
 
             const targetScroll = container.scrollLeft + scrollAmount;
             animateScroll(container, Math.min(maxScroll, Math.max(0, targetScroll)));
         } else {
-            // Gallery-style view scroll with snap
             if (direction === 'prev' && currentIndex === 1) {
                 animateScroll(container, 0);
                 return;
@@ -138,21 +168,23 @@ function ScrollView({
         }
     };
 
-    // Calculate max scroll position based on type
-    const maxScrollPosition = scrollType === "single"
-        ? totalImages - 1
-        : Math.max(0, Math.ceil(totalImages / calculateImagesPerView(containerRef.current)) - 1);
-
     const progress = currentIndex >= maxScrollPosition
         ? `${maxScrollPosition + 1}/${maxScrollPosition + 1}`
         : `${currentIndex + 1}/${maxScrollPosition + 1}`;
 
+    const buttonClass = `w-[30px] h-[30px] flex items-center justify-center 
+        text-complementPrimary text-[14px] 
+        rounded-full 
+        transition-all duration-200
+        active:-translate-y-1`;
+
     return (
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row gap-3 items-center">
             <button
                 onClick={() => scrollTo('prev')}
-                disabled={currentIndex === 0}
-                className={`w-[25px] h-[25px] flex items-center justify-center text-complementPrimary text-[14px] ${currentIndex === 0 ? 'bg-secondary' : 'bg-tertiary'} rounded-full`}
+                disabled={currentIndex === 0 || isScrolling}
+                className={`${buttonClass} 
+                ${currentIndex === 0 || isScrolling ? 'bg-secondary' : 'bg-tertiary'}`}
             >
                 <IoIosArrowBack size={16} />
             </button>
@@ -161,8 +193,9 @@ function ScrollView({
             </span>
             <button
                 onClick={() => scrollTo('next')}
-                disabled={currentIndex >= maxScrollPosition}
-                className={`w-[25px] h-[25px] flex items-center justify-center text-complementPrimary text-[14px] ${currentIndex >= maxScrollPosition ? 'bg-secondary' : 'bg-tertiary'} rounded-full`}
+                disabled={currentIndex >= maxScrollPosition || isScrolling}
+                className={`${buttonClass} 
+                ${currentIndex >= maxScrollPosition || isScrolling ? 'bg-secondary' : 'bg-tertiary'}`}
             >
                 <IoIosArrowForward size={16} />
             </button>
@@ -180,6 +213,7 @@ ScrollView.propTypes = {
     }).isRequired,
 
     // Optional props with defaults
+    speed: PropTypes.number,
     scrollType: PropTypes.oneOf(['single', 'view']),
     imageWidth: PropTypes.number,
     imageGap: PropTypes.number,
@@ -187,6 +221,7 @@ ScrollView.propTypes = {
 };
 
 ScrollView.defaultProps = {
+    speed: 1,
     scrollType: 'view',
     imageWidth: 200,
     imageGap: 16,

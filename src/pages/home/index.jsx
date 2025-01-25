@@ -4,7 +4,6 @@ import Hero from "./hero"
 import one from '../../assets/images/placeholder-images/one.png'
 import two from '../../assets/images/placeholder-images/two.png'
 import three from '../../assets/images/placeholder-images/three.png'
-import four from '../../assets/images/placeholder-images/four.png'
 import photo1 from '../../assets/images/placeholder-images/photography1.png'
 import photo2 from '../../assets/images/placeholder-images/photography2.png'
 
@@ -24,25 +23,57 @@ export default function HomePage() {
     }
 
     return (
-        <div>
+        <div className="w-full overflow-x-hidden">
             <Landing onJoin={onJoin} specialNotices={specialNotices} />
-            {/* Refer to tailwind.config.js for container, container-px and container-px-md variables */}
-            <div className="max-w-container px-container-px py-5 mx-auto flex flex-col md:py-7 md:px-container-px-md">
+            <div className="max-w-container mx-auto flex flex-col
+                py-5 md:py-7
+                px-container-px md:px-container-px-md">
                 <About clubGallery={clubGallery} stats={stats} learnMore={learnMore} />
                 <Hero photos={topPhotos} />
             </div>
-        </div >
+        </div>
     )
 }
 
 const clubGallery = [
-    two,
-    one,
-    two,
-    three,
-    four,
-    two
+    {
+        photo: two,
+        caption: 'NITK Wildlife Photography Event at Bhadra Wildlife Sanctuary.',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-23', // optional
+    },
+    {
+        photo: one,
+        caption: 'Taken at Kaua\'i',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
+    {
+        photo: three,
+        caption: 'Taken at Mangalore',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
+    {
+        photo: one,
+        caption: 'Taken at Red Rock',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
+    {
+        photo: two,
+        caption: 'Club Trip to Goa. Batch of 2027',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
+    {
+        photo: three,
+        caption: 'Taken at Mangalore',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
 ]
+
 const topPhotos = [
     {
         id: 1,

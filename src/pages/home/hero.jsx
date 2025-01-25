@@ -2,7 +2,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { FiCamera } from "react-icons/fi";
 import { MdOutlineOpenInNew } from "react-icons/md";
-import ScrollView from "./ScrollView";
+import ScrollView from "../../components/util/ScrollView";
 import { useRef, useState } from "react";
 import { Link } from "react-router";
 import PropTypes from 'prop-types';
@@ -72,6 +72,7 @@ function Hero({ photos }) {
                         </div>
                     </div>
                     <ScrollView
+                        speed={1.5}
                         currentIndex={currentImageIndex}
                         setCurrentIndex={setCurrentImageIndex}
                         totalImages={photos.length}
@@ -85,5 +86,15 @@ function Hero({ photos }) {
     )
 }
 
+Hero.propTypes = {
+    photos: PropTypes.arrayOf(PropTypes.shape({
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        photographer: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired,
+    })).isRequired,
+}
 
 export default Hero

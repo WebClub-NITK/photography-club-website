@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 function Landing({ onJoin, specialNotices }) {
     return (
-        <div className="relative h-[calc(100vh-65px)]">
+        <div className="relative h-[calc(100vh-65px)] w-full">
             <img src={landingImg} alt="landing" className="w-full h-full object-cover absolute inset-0" />
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 flex flex-col items-center justify-center px-container-px md:px-container-px-md">
@@ -29,15 +29,19 @@ function Landing({ onJoin, specialNotices }) {
                         Join the community
                     </Button>
                 </div>
-                <div className="mt-8">
+                <div className="mt-8 px-3 py-3 
+                            rounded-full bg-[#f9ffe8]/70 backdrop-blur-sm 
+                            text-black text-sm md:text-base font-medium
+                            flex items-center gap-1
+                            ">
+                    <TbSpeakerphone className="w-5 h-5" />
                     <ReactTyped
                         strings={
-                            specialNotices.map(notice => `📢 ${notice}`)
+                            specialNotices
                         }
                         typeSpeed={50}
                         backSpeed={50}
                         loop
-                        className="px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm text-black text-sm md:text-base font-medium"
                     />
                 </div>
             </div>

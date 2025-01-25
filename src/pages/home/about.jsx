@@ -1,10 +1,14 @@
-import ScrollView from './ScrollView'
+import ScrollView from '../../components/util/ScrollView'
+import SimplePhotoViewer from '../../components/util/PhotoViewer'
 import { useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 
 
 function About({ clubGallery, stats, learnMore }) {
     const galleryRef = useRef(null);
     const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
+    const [openedPhoto, setOpenedPhoto] = useState({});
 
     return (
         <div>
@@ -59,20 +63,51 @@ function About({ clubGallery, stats, learnMore }) {
                     className="overflow-x-hidden overflow-y-hidden"
                     ref={galleryRef}
                 >
-                    <div className="flex flex-row items-start gap-4">
+                    <div className="flex flex-row items-start gap-4 pb-3">
                         {clubGallery.map((image, index) => (
                             <img
-                                src={image}
+                                src={image.photo}
                                 alt="club-gallery"
                                 key={index}
-                                className="w-[200px] max-h-[250px] rounded-[8px] object-contain"
+                                className="w-[200px] max-h-[250px] rounded-[8px] object-contain transition-all duration-100 hover:cursor-pointer hover:drop-shadow-md"
+                                onClick={() => {
+                                    setOpenedPhoto({
+                                        photo: image.photo,
+                                        caption: image.caption,
+                                        date: image.date,
+                                        itemsInPhoto: image.itemsInPhoto,
+                                    });
+                                    setIsOpen(true);
+                                }}
                             />
                         ))}
                     </div>
                 </div>
+                <SimplePhotoViewer
+                    isOpen={isOpen}
+                    photo={openedPhoto.photo}
+                    caption={openedPhoto.caption}
+                    date={openedPhoto.date}
+                    itemsInPhoto={openedPhoto.itemsInPhoto}
+                    onClose={() => setIsOpen(false)}
+                />
             </div>
         </div>
     )
+}
+
+About.propTypes = {
+    clubGallery: PropTypes.arrayOf(PropTypes.shape({
+        photo: PropTypes.string.isRequired,
+        caption: PropTypes.string.isRequired,
+        itemsInPhoto: PropTypes.arrayOf(PropTypes.string),
+        date: PropTypes.string.isRequired,
+    })).isRequired,
+    stats: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+    })).isRequired,
+    learnMore: PropTypes.func.isRequired,
 }
 
 export default About
