@@ -24,7 +24,7 @@ function About({ clubGallery, stats, learnMore }) {
                     <br /><br />
                     It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Contrary to popular belief
                 </p>
-                <div className="flex flex-col gap-2 text-primary">
+                <div className="md:mt-5 flex flex-col gap-2 text-primary">
                     {stats.map((value, index) => (
                         <div key={index} className="flex gap-2 border-b border-secondary pb-2">
                             <span className="w-[40px] text-right text-xl font-bold">{value.value}</span>
@@ -56,14 +56,14 @@ function About({ clubGallery, stats, learnMore }) {
                         scrollType="view"
                         containerRef={galleryRef}
                         imageWidth={200}
-                        imageGap={16}
+                        imageGap={12}
                     />
                 </div>
                 <div
                     className="overflow-x-hidden overflow-y-hidden"
                     ref={galleryRef}
                 >
-                    <div className="flex flex-row items-start gap-4 pb-3">
+                    <div className="flex flex-row items-start gap-[12px] pb-3">
                         {clubGallery.map((image, index) => (
                             <img
                                 src={image.photo}
