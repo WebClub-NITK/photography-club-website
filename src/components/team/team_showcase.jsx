@@ -1,31 +1,39 @@
-import React from 'react';
-import { TeamMember } from './team_member';
-import { TabContext } from '../../context/TabContext';
-import { useContext } from 'react';
+import React, { useContext } from "react";
+import { TeamMember } from "./team_member";
+import { TabContext } from "../../context/TabContext";
+import { useNavigate } from "react-router-dom";
 
 export function TeamShowcase() {
-  const {teamMembers, activeItem,searchQuery} = useContext(TabContext);
-  // getting the people whose team matches with the tab selected 
-  const selectedTeamMembers = teamMembers.filter((member) => (member.team === activeItem))
+  const navigate = useNavigate();
+  const { teamMembers, activeItem, searchQuery } = useContext(TabContext);
 
-  // check whether the view all tab is selected or not
-  const membersToDisplay = activeItem === 'View all' ? teamMembers : selectedTeamMembers
-  const finalMembers = membersToDisplay.filter((member) => member.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  // Filter members based on selected team and search query
+  const selectedTeamMembers = teamMembers.filter(
+    (member) => activeItem === "View all" || member.team === activeItem
+  );
+
+  const finalMembers = selectedTeamMembers.filter((member) =>
+    member.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Navigate to individual portfolio page
+  const goToIndividualPortfolio = (id) => {
+    navigate(`/portfolio/${id}`);
+  };
 
   return (
     <div className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {
-            finalMembers.map((member) => (
-              <TeamMember
-                key={member.id}
-                name={member.name}
-                role={member.role}
-                imageUrl={member.imageUrl}
-              />
-            ))
-          }
+          {finalMembers.map((member) => (
+            <TeamMember
+              key={member.id}
+              name={member.name}
+              role={member.role}
+              imageUrl={member.avatar}
+              onClick={() => goToIndividualPortfolio(member.id)} // Pass click handler
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
-			<Route path="/portfolio/:id" element={<IndividualPortfolio />} />
+            <Route path="/portfolio/:id" element={<IndividualPortfolio />} />
             <Route path="/photo-reels" element={<PhotoReels />} />
           </Routes>
         </div>

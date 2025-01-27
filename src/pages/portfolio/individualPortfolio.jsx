@@ -1,44 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Camera, Mail, Instagram, Globe } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import PhotoGrid from "../../components/portfolio/PhotoGrid";
 import UserCard from "../../components/portfolio/UserCard";
+import { TabContext } from "../../context/TabContext";
 
 const IndividualPortfolio = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
-  
-  const photographer =  {
-    id: id,
-    name: "John Smith",
-    role: "Portrait Photographer",
-    bio: "Specializing in capturing genuine emotions and authentic moments through portrait photography.",
-    avatar: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400",
-    mail:"John@gmai.com",
-    instagram:"johnsmith",
-    photos: [
-      {
-        id: "1",
-        title: "Urban Portrait",
-        url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800",
-        description: "Street photography in downtown"
-      },
-      {
-        id: "2",
-        title: "Natural Light",
-        url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800",
-        description: "Portrait session using natural lighting"
-      }
-    ]
-  }
+  const { id } = useParams(); // Get the photographer ID from URL params
+  const { teamMembers } = useContext(TabContext); // Get team members from context
 
+  // Find the photographer by ID
+  const photographer = teamMembers.find((member) => member.id === id);
+
+  // Handle invalid photographer ID
   if (!photographer) {
-    return <div>Photographer not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Photographer Not Found</h1>
+          <p className="text-gray-600 mb-8">The photographer you are looking for does not exist.</p>
+          <button onClick={() => navigate(-1)} className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center text-gray-600 hover:text-gray-900 mb-8 group"
@@ -47,13 +40,18 @@ const IndividualPortfolio = () => {
           Back to Team
         </button>
 
-        {/* Section 1 & 2: Photographer Info */}
-        <UserCard avatar={photographer.avatar} role={photographer.role} name={photographer.name} bio={photographer.bio} mail={photographer.mail} instagram={photographer.instagram} />
-       
+        {/* Photographer Info */}
+        <UserCard
+          avatar={photographer.avatar}
+          role={photographer.role}
+          name={photographer.name}
+          bio={photographer.bio}
+          mail={photographer.mail}
+          instagram={photographer.instagram}
+        />
 
-        {/* Section 3: Photo Grid */}
+        {/* Photo Gallery */}
         <PhotoGrid photographer={photographer} />
-        
       </div>
     </div>
   );

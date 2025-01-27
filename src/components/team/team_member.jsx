@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export function TeamMember({ name, role, imageUrl }) {
+export function TeamMember({ name, role, imageUrl, onClick }) {
     return (
-        <div className="relative group">
+        <div className="relative group" onClick={onClick}>
         <div className="overflow-hidden rounded-2xl bg-gray-100">
           <img
             src={imageUrl}
