@@ -1,9 +1,6 @@
 import Landing from "./landing"
 import About from "./about"
 import Hero from "./hero"
-import one from '../../assets/images/placeholder-images/one.png'
-import two from '../../assets/images/placeholder-images/two.png'
-import three from '../../assets/images/placeholder-images/three.png'
 import photo1 from '../../assets/images/placeholder-images/photography1.png'
 import photo2 from '../../assets/images/placeholder-images/photography2.png'
 
@@ -37,37 +34,43 @@ export default function HomePage() {
 
 const clubGallery = [
     {
-        photo: two,
+        photo: "https://placehold.co/600x900",
         caption: 'NITK Wildlife Photography Event at Bhadra Wildlife Sanctuary.',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-23', // optional
     },
     {
-        photo: one,
+        photo: "https://placehold.co/600x500",
         caption: 'Taken at Kaua\'i',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-01', // optional
     },
     {
-        photo: three,
+        photo: "https://placehold.co/400x400",
         caption: 'Taken at Mangalore',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-01', // optional
     },
     {
-        photo: one,
+        photo: "https://placehold.co/600x400",
         caption: 'Taken at Red Rock',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-01', // optional
     },
     {
-        photo: two,
+        photo: "https://placehold.co/1280x720",
         caption: 'Club Trip to Goa. Batch of 2027',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-01', // optional
     },
     {
-        photo: three,
+        photo: "https://placehold.co/720x1280",
+        caption: 'Club Trip to Visag. Batch of 2026',
+        itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
+        date: '2024-01-01', // optional
+    },
+    {
+        photo: "https://placehold.co/400x300",
         caption: 'Taken at Mangalore',
         itemsInPhoto: ['John Doe', 'Jane Doe'], // optional
         date: '2024-01-01', // optional

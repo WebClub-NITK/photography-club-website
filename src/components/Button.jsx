@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types'
 
-const Button = ({ 
-    children, 
-    onClick, 
-    className = "", 
+const Button = ({
+    children,
+    onClick,
+    className = "",
     variant = "primary",
     icon = null,
     size = "md"
 }) => {
     const baseStyles = "flex items-center justify-center gap-2 font-medium transition-all duration-300 rounded-full"
-    
+
     const variants = {
         primary: "bg-black/80 backdrop-blur-sm text-white hover:bg-black",
         secondary: "bg-white/80 backdrop-blur-sm text-black hover:bg-gray-50",
@@ -23,7 +23,7 @@ const Button = ({
     }
 
     return (
-        <button 
+        <button
             onClick={onClick}
             className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
         >
