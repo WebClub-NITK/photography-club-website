@@ -1,23 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Search, X } from 'lucide-react';
-import { useContext } from 'react';
 import { TabContext } from '../../context/TabContext';
 
 const SearchBar = ({ placeholder = "Search..." }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const { searchQuery, setSearchQuery } = useContext(TabContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSearchQuery(searchTerm);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); // Prevents the default form submit behavior
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
       setSearchQuery(searchTerm);
-    }
-  };
+    }, 500);
+
+    return () => clearTimeout(debounceTimeout);
+  }, [searchTerm, setSearchQuery]);
 
   const clearSearch = () => {
     setSearchTerm('');
@@ -26,7 +21,10 @@ const SearchBar = ({ placeholder = "Search..." }) => {
 
   return (
     <div className="flex justify-center items-center w-full p-6">
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl">
+      <form 
+        onSubmit={(e) => e.preventDefault()} // Prevents default form submission
+        className="w-full max-w-2xl"
+      >
         <div className="relative flex items-center">
           <Search 
             className="absolute left-4 text-gray-400"
@@ -37,7 +35,6 @@ const SearchBar = ({ placeholder = "Search..." }) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={placeholder}
-            onKeyDown={handleKeyDown}  // Added keydown handler
             className="w-full py-3 pl-12 pr-12 text-base border-2 rounded-full 
                      shadow-sm focus:outline-none focus:border-blue-500 
                      focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50

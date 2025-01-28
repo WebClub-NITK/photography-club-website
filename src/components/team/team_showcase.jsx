@@ -19,6 +19,7 @@ export function TeamShowcase() {
   // Navigate to individual portfolio page
   const goToIndividualPortfolio = (id) => {
     navigate(`/portfolio/${id}`);
+    window.scrollTo(0, 0);
   };
 
   return (
