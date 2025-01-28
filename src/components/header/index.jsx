@@ -5,6 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext"
+import Button from "../Button"
 
 export default function Header() {
     const [nav, setNav] = useState(false)
@@ -19,78 +20,83 @@ export default function Header() {
             <header className="
                 z-10
                 fixed top-0 left-0 right-0
-                h-[65px]
-                bg-navbar bg-opacity-50 backdrop-blur-lg font-test text-primary
-                border-b-2 border-b-secondary  
+                h-[70px]
+                bg-white/80 backdrop-blur-xl
+                border-b border-gray-100
                 flex justify-between items-center
-                px-10
+                px-container-px md:px-container-px-md
             ">
                 <Link to="/">
                     <img
                         src={logo}
-                        alt="PClub Logo"
-                        className={`w-[90px] ${theme === 'light' ? 'invert' : ''}`}
+                        alt="Photography Club NITK"
+                        className={`w-[50px] ${theme === 'light' ? 'invert' : ''}`}
                     />
                 </Link>
-                <div className="hidden md:flex items-center justify-center gap-5">
-                    <Link to="/">
+                <div className="hidden md:flex items-center justify-center gap-8 text-sm tracking-wide">
+                    <Link to="/" className="hover:text-red-500 transition-colors">
                         Events
                     </Link>
-                    <Link to="/portfolio">
+                    <Link to="/portfolio" className="hover:text-red-500 transition-colors">
                         Members
                     </Link>
-                    <Link to="/">
+                    <Link to="/" className="hover:text-red-500 transition-colors">
                         Blogs
                     </Link>
-                    |
                     <Link to="/photo-reels">
-                        <div className="flex items-center gap-2">
-                            <FiCamera size={20} />
-                            <p>Photo Reel</p>
-                        </div>
+                        <Button variant="outline" size="sm" icon={<FiCamera />}>
+                            Photo Reel
+                        </Button>
                     </Link>
                 </div>
                 <div onClick={handleNav} className='block md:hidden'>
                     <AiOutlineMenu size={20} />
                 </div>
                 <div className="hidden md:block">
-                    <div className="flex items-center gap-2">
-                        <FaRegUser className="w-[17px] h-[17px]" />
-                        <p>Club Member</p>
-                    </div>
+                    <Button variant="secondary" size="sm" icon={<FaRegUser />}>
+                        Club Member
+                    </Button>
                 </div>
+            </header>
 
-            </header >
-            <div className={`fixed ease-in duration-100 ${nav ? "z-20 text-primary left-0 top-0 w-[70%] border-r-2 border-secondary h-screen bg-green/50 backdrop-blur-2xl" : "left-[-100%]"}`}>
-                <div className="pt-10 pr-4 flex justify-between flex-col items-end w-[100%] text-primary">
-                    <div onClick={handleNav} >
-                        <AiOutlineClose size={30} />
+            {/* Mobile Menu */}
+            <div className={`fixed ease-in duration-200 ${nav ? "z-20 left-0 top-0 w-[70%] h-screen bg-white/95 backdrop-blur-xl" : "left-[-100%]"}`}>
+                <div className="px-container-px py-8 flex flex-col h-full">
+                    <div className="flex justify-between items-center">
+                        <img
+                            src={logo}
+                            alt="Photography Club NITK"
+                            className={`w-[40px] ${theme === 'light' ? 'invert' : ''}`}
+                        />
+                        <div onClick={handleNav} className="cursor-pointer">
+                            <AiOutlineClose size={20} />
+                        </div>
                     </div>
-                    <ul className='p-4 pt-10 flex flex-col gap-5 w-full'>
-                        <Link to="/">
+                    <div className='flex flex-col gap-6 mt-12'>
+                        <Link onClick={handleNav} to="/" className="hover:text-red-500 transition-colors">
                             Events
                         </Link>
-                        <Link to="/">
+                        <Link onClick={handleNav} to="/portfolio" className="hover:text-red-500 transition-colors">
                             Members
                         </Link>
-                        <Link to="/">
+                        <Link onClick={handleNav} to="/" className="hover:text-red-500 transition-colors">
                             Blogs
                         </Link>
-                        <hr className="border-secondary" />
-                        <Link to="/">
+                        <hr className="border-gray-100" />
+                        <Link onClick={handleNav} to="/photo-reels" className="hover:text-red-500 transition-colors">
                             <div className="flex items-center gap-2">
-                                <FiCamera size={20} />
-                                <p>Photo Reel</p>
+                                <FiCamera size={18} />
+                                <span>Photo Reel</span>
                             </div>
                         </Link>
-                        <hr className="border-secondary" />
-                        <div className="flex items-center gap-2">
-                            <FaRegUser className="w-[17px] h-[17px]" />
-                            <p>Club Member</p>
+                        <hr className="border-gray-100" />
+                        <div onClick={handleNav} className="flex items-center gap-2 hover:text-red-500 transition-colors">
+                            <FaRegUser size={16} />
+                            <span>Club Member</span>
                         </div>
-                    </ul>
+                    </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
