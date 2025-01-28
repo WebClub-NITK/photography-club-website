@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import Photos from '../../components/photoReels/Photos';
 import Reels from '../../components/photoReels/Reels';
@@ -10,24 +10,33 @@ const PhotoReels = () => {
   // Function to render tab content based on active tab
   const renderTabContent = () => {
     if (activeTab === 'Photos') {
-      return (
-        <Photos/>
-      );
+      return <Photos />;
     }
     return <Reels />;
   };
 
   return (
-    <div className="mt-4 mb-4">
-      {/* Header */}
-      <h1 className="text-2xl font-bold text-center mb-4">Photo Reels</h1>
+    <>
+      {/* Header Section */}
+      <div className="mt-11 flex flex-col justify-center items-center gap-y-4 px-4 sm:px-6 lg:px-8">
+        <span className="text-center font-bold text-3xl border-[1.2px] border-black rounded-full px-4 py-2 w-auto sm:text-4xl lg:text-5xl">
+          Photography Feed
+        </span>
+        <span className="text-md opacity-60 sm:text-lg lg:text-xl lg:max-w-2xl text-center">
+          Explore amazing shots and stories from our talented photographers
+        </span>
+      </div>
 
       {/* Tabs Section */}
-      <Tab activeTab={activeTab} setActiveTab={setActiveTab}/>
+      <div className="mt-11">
+        <Tab activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
 
-      {/* Tab Content */}
-      <div className="col-span-4">{renderTabContent()}</div>
-    </div>
+      {/* Content Section */}
+      <div>
+        {renderTabContent()}
+      </div>
+    </>
   );
 };
 

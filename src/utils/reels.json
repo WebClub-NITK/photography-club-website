@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "title": "Behind the Lens",
+    "photographer": "John Doe",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=1",
+    "location": "Swiss Alps",
+    "date": "2024-02-15",
+    "images": [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
+      "https://images.unsplash.com/photo-1454496522488-7a8e488e8606",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
+    ],
+    "description": "A day in the life of a mountain photographer. Capturing the essence of alpine landscapes from dawn till dusk. Swipe to see the progression of light throughout the day.",
+    "likes": 234,
+    "camera": "Sony A7R IV",
+    "lens": "24-70mm f/2.8",
+    "settings": "Various"
+  },
+  {
+    "id": 2,
+    "title": "Tokyo Nights",
+    "photographer": "Emma Wilson",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=2",
+    "location": "Tokyo, Japan",
+    "date": "2024-02-10",
+    "images": [
+      "https://images.unsplash.com/photo-1503899036084-c55cdd92da26",
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf",
+      "https://images.unsplash.com/photo-1542051841857-5f90071e7989"
+    ],
+    "description": "Exploring the neon-lit streets of Tokyo. A visual journey through the city's vibrant nightlife and modern architecture.",
+    "likes": 456,
+    "camera": "Fujifilm X-T4",
+    "lens": "35mm f/1.4",
+    "settings": "f/1.8, 1/60s, ISO 800"
+  },
+  {
+    "id": 3,
+    "title": "Portrait Series: Light & Shadow",
+    "photographer": "Sarah Chen",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=3",
+    "location": "Paris, France",
+    "date": "2024-02-01",
+    "images": [
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+    ],
+    "description": "A study of natural light and its interaction with human features. Shot in the historic streets of Montmartre.",
+    "likes": 789,
+    "camera": "Canon R5",
+    "lens": "85mm f/1.2",
+    "settings": "f/1.4, 1/200s, ISO 200"
+  },
+  {
+    "id": 4,
+    "title": "Architectural Geometry",
+    "photographer": "Michael Zhang",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=4",
+    "location": "Dubai, UAE",
+    "date": "2024-01-28",
+    "images": [
+      "https://images.unsplash.com/photo-1486325212027-8081e485255e",
+      "https://images.unsplash.com/photo-1478737270239-2f02b77fc618",
+      "https://images.unsplash.com/photo-1496564203457-11bb12075d90"
+    ],
+    "description": "Modern architecture series showcasing the bold geometric patterns and reflective surfaces of Dubai's skyline.",
+    "likes": 567,
+    "camera": "Nikon Z7 II",
+    "lens": "14-24mm f/2.8",
+    "settings": "f/11, 1/400s, ISO 64"
+  },
+  {
+    "id": 5,
+    "title": "Festival Colors",
+    "photographer": "Lisa Patel",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=5",
+    "location": "Mumbai, India",
+    "date": "2024-01-20",
+    "images": [
+      "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7",
+      "https://images.unsplash.com/photo-1532635241-17e820acc59f",
+      "https://images.unsplash.com/photo-1531951634836-6a8f9f847b30"
+    ],
+    "description": "Documenting the vibrant Holi festival celebrations. A kaleidoscope of colors, emotions, and traditions.",
+    "likes": 890,
+    "camera": "Sony A9 III",
+    "lens": "70-200mm f/2.8",
+    "settings": "f/4, 1/500s, ISO 400"
+  },
+  {
+    "id": 6,
+    "title": "Desert Chronicles",
+    "photographer": "Alex Rivera",
+    "photographerAvatar": "https://i.pravatar.cc/150?img=6",
+    "location": "Sahara Desert",
+    "date": "2024-01-15",
+    "images": [
+      "https://images.unsplash.com/photo-1509316785289-025f5b846b35",
+      "https://images.unsplash.com/photo-1682686580391-615b1e32be01",
+      "https://images.unsplash.com/photo-1682686580186-b55d2a91053c"
+    ],
+    "description": "A three-day journey through the Sahara, capturing the ever-changing patterns of sand and sky. From sunrise to starlit nights.",
+    "likes": 678,
+    "camera": "Canon R3",
+    "lens": "16-35mm f/2.8",
+    "settings": "Various"
+  }
+] 
