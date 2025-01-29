@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { TeamMember } from "./team_member";
 import { TabContext } from "../../context/TabContext";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,11 @@ export function TeamShowcase() {
   // Navigate to individual portfolio page
   const goToIndividualPortfolio = (id) => {
     navigate(`/portfolio/${id}`);
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
