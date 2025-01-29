@@ -18,6 +18,7 @@ export function TeamShowcase() {
 
   // Navigate to individual portfolio page
   const goToIndividualPortfolio = (id) => {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
     navigate(`/portfolio/${id}`);
     window.scrollTo({
       top: 0,

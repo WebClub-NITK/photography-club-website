@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import PhotoGrid from "../../components/portfolio/PhotoGrid";
@@ -12,14 +12,19 @@ const IndividualPortfolio = () => {
 
   // Find the photographer by ID
   const photographer = teamMembers.find((member) => member.id === id);
-  const backToPrevious=()=>{
-    navigate(-1);
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
+  const backToPrevious = () => {
+    // navigate(-1) -> gives a choppy transition between pages
+    navigate("/portfolio");
+
+    if(sessionStorage.getItem('scrollPosition')){
+      window.scrollTo({
+        top: parseInt(sessionStorage.getItem('scrollPosition')),
+        behavior: "smooth",
+      });
+    }
+
+    sessionStorage.removeItem('scrollPosition');
+  };
 
   // Handle invalid photographer ID
   if (!photographer) {
@@ -41,7 +46,7 @@ const IndividualPortfolio = () => {
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Back Button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={backToPrevious}
           className="flex items-center text-gray-600 hover:text-gray-900 mb-8 group"
         >
           <ArrowLeft className="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1" />
