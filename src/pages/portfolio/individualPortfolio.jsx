@@ -12,6 +12,14 @@ const IndividualPortfolio = () => {
 
   // Find the photographer by ID
   const photographer = teamMembers.find((member) => member.id === id);
+  const backToPrevious=()=>{
+    navigate(-1);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
 
   // Handle invalid photographer ID
   if (!photographer) {
@@ -20,7 +28,7 @@ const IndividualPortfolio = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Photographer Not Found</h1>
           <p className="text-gray-600 mb-8">The photographer you are looking for does not exist.</p>
-          <button onClick={() => navigate(-1)} className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
+          <button onClick={backToPrevious} className="px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
             Go Back
           </button>
         </div>
