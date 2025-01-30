@@ -1,10 +1,6 @@
 import Landing from "./landing"
 import About from "./about"
 import Hero from "./hero"
-import one from '../../assets/images/placeholder-images/one.png'
-import two from '../../assets/images/placeholder-images/two.png'
-import three from '../../assets/images/placeholder-images/three.png'
-import four from '../../assets/images/placeholder-images/four.png'
 import photo1 from '../../assets/images/placeholder-images/photography1.png'
 import photo2 from '../../assets/images/placeholder-images/photography2.png'
 
@@ -36,13 +32,63 @@ export default function HomePage() {
 }
 
 const clubGallery = [
-    two,
-    one,
-    two,
-    three,
-    four,
-    two
+    {
+        image: "https://placehold.co/600x700",
+        caption: "Image 1",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/600x500",
+        caption: "Image 2",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/500x800",
+        caption: "Image 3",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/1280x800",
+        caption: "Image 4",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/600x600",
+        caption: "Image 5",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/720x1280",
+        caption: "Image 6",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/600x400",
+        caption: "Image 7",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/400x400",
+        caption: "Image 8",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+    {
+        image: "https://placehold.co/900x600",
+        caption: "Image 9",
+        date: "2024-01-01",
+        itemsInPhoto: ["Person 1", "Person 2", "Person 3"]
+    },
+
 ]
+
 const topPhotos = [
     {
         id: 1,
@@ -56,6 +102,33 @@ const topPhotos = [
     {
         id: 2,
         image: photo2,
+        title: "Mountain View",
+        location: "Mountain",
+        date: "2024-01-01",
+        photographer: "EFGH",
+        link: "Link",
+    },
+    {
+        id: 3,
+        image: "https://placehold.co/1920x1080",
+        title: "Beautiful Hills.",
+        location: "Hills",
+        date: "2024-01-01",
+        photographer: "EFGH",
+        link: "Link",
+    },
+    {
+        id: 4,
+        image: "https://placehold.co/1920x900",
+        title: "Mountain View",
+        location: "Mountain",
+        date: "2024-01-01",
+        photographer: "EFGH",
+        link: "Link",
+    },
+    {
+        id: 5,
+        image: "https://placehold.co/1920x1200",
         title: "Mountain View",
         location: "Mountain",
         date: "2024-01-01",
