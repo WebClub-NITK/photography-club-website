@@ -37,8 +37,7 @@ function About({ clubGallery, stats, learnMore }) {
                 className="mt-10 w-[130px] rounded-[8px] bg-primary px-4 py-2 
                 text-[14px] text-complementPrimary 
                 transition-all duration-200
-                hover:bg-red-400 hover:drop-shadow-xl 
-                focus:bg-red-400 focus:drop-shadow-xl
+                hover:bg-red-400 hover:drop-shadow-xl
                 md:mt-3"
                 onClick={learnMore}
             >
