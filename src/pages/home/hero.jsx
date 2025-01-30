@@ -2,88 +2,54 @@ import { IoLocationOutline } from "react-icons/io5";
 import { SlCalender } from "react-icons/sl";
 import { FiCamera } from "react-icons/fi";
 import { MdOutlineOpenInNew } from "react-icons/md";
-import ScrollButtons from "./scrollbuttons";
+import ScrollView from "../../components/util/ScrollView";
 import { useRef, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function Hero({ photos }) {
     const scrollContainerRef = useRef(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const navigate = useNavigate();
 
-    const handleScroll = () => {
-        if (!scrollContainerRef.current) return;
-
-        const container = scrollContainerRef.current;
-
-        // Get all image elements
-        const images = container.getElementsByTagName('img');
-        if (images.length === 0) return;
-
-        // Get the container's left position
-        const containerLeft = container.getBoundingClientRect().left;
-        const containerCenter = containerLeft + (container.clientWidth / 2);
-
-        // Find the image closest to the center
-        let closestImage = 0;
-        let minDistance = Infinity;
-
-        Array.from(images).forEach((img, index) => {
-            const imgRect = img.getBoundingClientRect();
-            const imgCenter = imgRect.left + (imgRect.width / 2);
-            const distance = Math.abs(containerCenter - imgCenter);
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestImage = index;
-            }
-        });
-
-        setCurrentImageIndex(closestImage);
-    };
-
-    const scrollTo = (direction) => {
-        if (!scrollContainerRef.current) return;
-
-        const container = scrollContainerRef.current;
-        const scrollAmount = container.clientWidth;
-        container.scrollBy({
-            left: direction === 'next' ? scrollAmount : -scrollAmount,
-            behavior: 'smooth'
-        });
+    const handlePhotoReelsClick = () => {
+        navigate('/photo-reels');
+        window.scrollTo(0, 0);
     };
 
     return (
         <div className="flex flex-col gap-4 py-10">
-            <Link to="/photo-reels">
-                <p className="flex flex-row items-center gap-2 pt-3 
+            <button
+                onClick={handlePhotoReelsClick}
+                className="flex flex-row items-center gap-2 pt-3 w-fit pr-4
                     font-bold text-[14px] text-tertiary uppercase">
-                    <p>Top Rated on <u>Photo Reels</u></p>
-                    <MdOutlineOpenInNew size={20} />
-                </p>
-            </Link>
+                <p>Top Rated on <u>Photo Reels</u></p>
+                <MdOutlineOpenInNew size={20} />
+            </button>
             <p className="font-playfair font-medium text-[48px] leading-[1.1] text-primary">
                 Captured by us, celebrated by all.
             </p>
             <div className="flex flex-col items-start gap-4 pt-2 md:flex-row-reverse">
                 {/* Photo Slider */}
                 <div
-                    className="overflow-x-auto overflow-y-hidden"
+                    className="md:flex-grow overflow-x-hidden overflow-y-hidden"
                     ref={scrollContainerRef}
-                    onScroll={handleScroll}
                 >
-                    <div className="flex flex-row items-start gap-5">
+                    <div className="flex flex-row items-start gap-[20px]">
                         {photos.map((image, index) => (
                             <img
                                 src={image.image}
                                 alt="club-gallery"
                                 key={index}
-                                className="w-full max-h-[450px] rounded-[8px] object-contain"
+                                className={` max-w-[100%] max-h-[300px] md:max-h-[450px] lg:max-h-[500px] rounded-[8px] md:rounded-[12px] object-contain
+                                    transition-all duration-200 ease-in-out
+                                        ${index === currentImageIndex ? "" : "brightness-[0.6] contrast-[0.9]"}`}
                             />
                         ))}
                     </div>
                 </div>
                 {/* Photo Info */}
-                <div className="flex flex-col gap-4 pt-2 md:w-[300px]">
+                <div className="h-full flex flex-col justify-between gap-4 pt-2 md:min-w-[180px] lg:min-w-[250px]">
                     <div>
                         <p className="font-playfair font-medium text-[16px] leading-[1.2] 
                             text-primary italic">
@@ -108,17 +74,25 @@ function Hero({ photos }) {
                                     <p>Open Photo</p>
                                 </p>
                             </Link>
+                            <ScrollView
+                                currentIndex={currentImageIndex}
+                                setCurrentIndex={setCurrentImageIndex}
+                                totalImages={photos.length}
+                                scrollType="single"
+                                containerRef={scrollContainerRef}
+                                centerCalculation={true}
+                                imageGap={20}
+                            />
                         </div>
                     </div>
-                    <ScrollButtons
-                        onScroll={scrollTo}
-                        currentIndex={currentImageIndex}
-                        totalImages={photos.length}
-                    />
                 </div>
             </div>
         </div>
     )
 }
+
+Hero.propTypes = {
+    photos: PropTypes.array.isRequired,
+};
 
 export default Hero

@@ -1,33 +1,14 @@
-import ScrollButtons from './scrollbuttons'
+import ScrollView from "../../components/util/ScrollView";
+import PhotoViewer from "../../components/util/PhotoViewer";
 import { useState, useRef } from 'react'
+import PropTypes from 'prop-types';
 
 
 function About({ clubGallery, stats, learnMore }) {
     const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [isPhotoViewerOpen, setIsPhotoViewerOpen] = useState(false);
     const galleryRef = useRef(null);
-
-    const handleGalleryScroll = () => {
-        if (!galleryRef.current) return;
-
-        const container = galleryRef.current;
-        const scrollLeft = container.scrollLeft;
-        const imageWidth = 200 + 16; // image width (200px) + gap (16px)
-
-        // Calculate which image is closest to the center
-        const imageIndex = Math.round(scrollLeft / imageWidth);
-        setCurrentGalleryIndex(Math.min(Math.max(0, imageIndex), clubGallery.length - 1));
-    };
-
-    const scrollGallery = (direction) => {
-        if (!galleryRef.current) return;
-
-        const container = galleryRef.current;
-        const scrollAmount = 200 + 16; // image width + gap
-        container.scrollBy({
-            left: direction === 'next' ? scrollAmount : -scrollAmount,
-            behavior: 'smooth'
-        });
-    };
 
     return (
         <div>
@@ -68,31 +49,54 @@ function About({ clubGallery, stats, learnMore }) {
                     <p className="text-tertiary text-[14px] font-bold uppercase pt-3">
                         Club Gallery
                     </p>
-                    <ScrollButtons
-                        onScroll={scrollGallery}
+                    <ScrollView
                         currentIndex={currentGalleryIndex}
+                        setCurrentIndex={setCurrentGalleryIndex}
                         totalImages={clubGallery.length}
+                        scrollType="view"
+                        containerRef={galleryRef}
+                        imageWidth={200}
+                        imageGap={16}
+                        speed={1.5}
                     />
                 </div>
                 <div
-                    className="overflow-x-auto overflow-y-hidden"
+                    className="overflow-x-hidden overflow-y-hidden"
                     ref={galleryRef}
-                    onScroll={handleGalleryScroll}
                 >
-                    <div className="flex flex-row items-start gap-4">
+                    <div className="flex flex-row items-start gap-[16px]">
                         {clubGallery.map((image, index) => (
                             <img
-                                src={image}
+                                onClick={() => {
+                                    setCurrentPhotoIndex(index);
+                                    setIsPhotoViewerOpen(true);
+                                }}
+                                src={image.image}
                                 alt="club-gallery"
                                 key={index}
-                                className="w-[200px] max-h-[250px] rounded-[8px] object-contain"
+                                className="w-[200px] max-h-[250px] rounded-[8px] object-contain
+                                    hover:cursor-pointer hover:drop-shadow-lg transition-all duration-100"
                             />
                         ))}
                     </div>
                 </div>
             </div>
+            <PhotoViewer
+                isOpen={isPhotoViewerOpen}
+                onClose={() => setIsPhotoViewerOpen(false)}
+                photo={clubGallery[currentPhotoIndex].image}
+                caption={clubGallery[currentPhotoIndex].caption + " - " + currentPhotoIndex}
+                date={clubGallery[currentPhotoIndex].date}
+                itemsInPhoto={clubGallery[currentPhotoIndex].itemsInPhoto}
+            />
         </div>
     )
 }
+
+About.propTypes = {
+    clubGallery: PropTypes.array.isRequired,
+    stats: PropTypes.array.isRequired,
+    learnMore: PropTypes.func.isRequired,
+};
 
 export default About

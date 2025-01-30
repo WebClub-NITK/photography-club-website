@@ -22,7 +22,7 @@ export default function Header() {
                 fixed top-0 left-0 right-0
                 h-[70px]
                 bg-white/80 backdrop-blur-xl
-                border-b border-gray-100
+                border-b border-gray-200
                 flex justify-between items-center
                 px-container-px md:px-container-px-md
             ">

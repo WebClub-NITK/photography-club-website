@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 function Landing({ onJoin, specialNotices }) {
     return (
-        <div className="relative h-screen">
+        <div className="relative h-[calc(100vh-65px)]">
             <img src={landingImg} alt="landing" className="w-full h-full object-cover absolute inset-0" />
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 flex flex-col items-center justify-center px-container-px md:px-container-px-md">
@@ -17,7 +17,7 @@ function Landing({ onJoin, specialNotices }) {
                     A community at NITK where you can show the world from your perspective.
                 </p>
                 <div className="mt-10">
-                    <Button 
+                    <Button
                         onClick={onJoin}
                         icon={<FiCamera className="w-5 h-5" />}
                         variant="primary"
