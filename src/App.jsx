@@ -1,6 +1,11 @@
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/home";
 
+import Events from "./pages/events";
+import EventPage from "./pages/events/eventPage";
+import Blogs from "./pages/blogs";
+import BlogPage from "./pages/blogs/blogPage";
+
 import PhotoReels from "./pages/photoreel";
 import Header from "./components/header";
 
@@ -24,6 +29,14 @@ export default function App() {
                 <Route path=":id" element={<IndividualPortfolio />} />
               </Route>
               <Route path="/photo-reels" element={<PhotoReels />} />
+
+              <Route path="/events" element={<Events />}>
+                <Route path=":id" element={<EventPage />} />
+              </Route>
+              <Route path="/blogs" element={<Blogs />}>
+                <Route path=":id" element={<BlogPage />} />
+              </Route>
+
             </Routes>
           </div>
           <Footer />

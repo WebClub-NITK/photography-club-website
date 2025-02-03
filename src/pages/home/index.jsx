@@ -1,6 +1,7 @@
 import Landing from "./landing"
 import About from "./about"
 import Hero from "./hero"
+import ClubUpdates from "./clubUpdates"
 import photo1 from '../../assets/images/placeholder-images/photography1.png'
 import photo2 from '../../assets/images/placeholder-images/photography2.png'
 
@@ -26,8 +27,13 @@ export default function HomePage() {
             <div className="max-w-container px-container-px py-5 mx-auto flex flex-col md:py-7 md:px-container-px-md">
                 <About clubGallery={clubGallery} stats={stats} learnMore={learnMore} />
                 <Hero photos={topPhotos} />
+                <hr className="my-10 border-1 border-gray-300" />
+                <ClubUpdates events={events} blogs={blogs} />
+                <hr className="my-10 border-1 border-gray-300" />
             </div>
         </div >
+
+
     )
 }
 
@@ -154,4 +160,79 @@ const stats = [
         title: "Club Members",
         value: 74
     },
+]
+
+// Latest few events
+const events = [
+    {
+        id: "incident-24", // required
+        title: "Incident '24", // required
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.", //required
+        location: "Main Building, NITK", //required
+        dateTime: "2024-01-01 10:00 AM", //required
+        image: "https://img.freepik.com/free-photo/3d-modern-background-with-hot-pink-flowing-lines_1048-12263.jpg",
+        thumbnailColor: "#E195AB" //required
+    },
+    {
+        id: "engineer-24",
+        title: "Engineer '24",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+        location: "Main Building, NITK",
+        dateTime: "2024-01-01 10:00 AM",
+        image: "https://placehold.co/200x260", //optional
+        thumbnailColor: "#DE3163"
+    },
+    {
+        id: "photography-24",
+        title: "Photography '24",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+        location: "Main Building, NITK",
+        dateTime: "2024-01-01 10:00 AM",
+        image: "https://placehold.co/200x260",
+        thumbnailColor: "#FFB4A2"
+    },
+    {
+        id: "event-4",
+        title: "Event 4 - No Image",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+        location: "Main Building, NITK",
+        dateTime: "2024-01-01 10:00 AM",
+        image: null,
+        thumbnailColor: "#FFB4A2"
+    }
+]
+
+
+// Top few blogs
+const blogs = [
+    {
+        id: "blog-1",
+        title: "Title 1",
+        description: "Short Description or first few lines of the blog",
+        image: "https://placehold.co/380x150",
+    },
+    {
+        id: "blog-2",
+        title: "Title 2",
+        description: "Short Description or first few lines of the blog",
+        image: "https://placehold.co/380x150",
+    },
+    {
+        id: "blog-3",
+        title: "Title 3",
+        description: "Short Description or first few lines of the blog",
+        image: "https://placehold.co/380x150",
+    },
+    {
+        id: "blog-4",
+        title: "Title 4",
+        description: "Short Description or first few lines of the blog",
+        image: "https://placehold.co/380x150",
+    },
+    {
+        id: "blog-5",
+        title: "Title 5 - No Image",
+        description: "Short Description or first few lines of the blog",
+        image: null,
+    }
 ]

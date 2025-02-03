@@ -1,5 +1,5 @@
-import { IoLocationOutline } from "react-icons/io5";
-import { SlCalender } from "react-icons/sl";
+import { GrLocation } from "react-icons/gr";
+import { MdEvent } from "react-icons/md";
 import { FiCamera } from "react-icons/fi";
 import { MdOutlineOpenInNew } from "react-icons/md";
 import ScrollView from "../../components/util/ScrollView";
@@ -36,7 +36,8 @@ function Hero({ photos }) {
             <div className="flex flex-col items-start gap-4 pt-2 md:flex-row-reverse">
                 {/* Photo Slider */}
                 <div
-                    className="md:flex-grow overflow-x-hidden overflow-y-hidden"
+                    style={{ scrollbarWidth: "none" }}
+                    className="md:flex-grow overflow-x-auto overflow-y-hidden"
                     ref={scrollContainerRef}
                 >
                     <div className="flex flex-row items-start gap-[20px]">
@@ -56,16 +57,17 @@ function Hero({ photos }) {
                 <div className="h-full flex flex-col justify-between gap-4 pt-2 md:min-w-[180px] lg:min-w-[250px]">
                     <div>
                         <p className="font-playfair font-medium text-[16px] leading-[1.2] 
+                            md:text-[20px] md:py-5 lg:py-10 text-clip
                             text-primary italic">
                             {photos[currentImageIndex].title}
                         </p>
                         <div className="flex flex-col gap-4 py-4">
                             <p className="flex flex-row items-center gap-3 text-primary">
-                                <IoLocationOutline size={20} />
+                                <GrLocation size={20} />
                                 <p>{photos[currentImageIndex].location}</p>
                             </p>
                             <p className="flex flex-row items-center gap-3 text-primary">
-                                <SlCalender size={20} />
+                                <MdEvent size={20} />
                                 <p>{photos[currentImageIndex].date}</p>
                             </p>
                             <p className="flex flex-row items-center gap-3 text-primary">

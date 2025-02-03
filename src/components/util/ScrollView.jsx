@@ -13,6 +13,7 @@ function ScrollView({
     imageWidth = 200,
     imageGap = 16,
     centerCalculation = false,
+    showSlideNumbers = true,
 }) {
     const [maxScrollPosition, setMaxScrollPosition] = useState(0);
     const [isScrolling, setIsScrolling] = useState(false);
@@ -193,9 +194,11 @@ function ScrollView({
             >
                 <IoIosArrowBack size={16} />
             </button>
-            <span className="text-tertiary text-[14px] font-bold uppercase">
-                {progress}
-            </span>
+            {showSlideNumbers && (
+                <span className="text-tertiary text-[14px] font-bold uppercase">
+                    {progress}
+                </span>
+            )}
             <button
                 onClick={() => scrollTo('next')}
                 disabled={currentIndex >= maxScrollPosition || isScrolling}
@@ -226,6 +229,7 @@ ScrollView.propTypes = {
     imageWidth: PropTypes.number,
     imageGap: PropTypes.number,
     centerCalculation: PropTypes.bool,
+    showSlideNumbers: PropTypes.bool,
 };
 
 ScrollView.defaultProps = {
