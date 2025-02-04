@@ -45,7 +45,7 @@ function ClubUpdates({ events, blogs }) {
                 <div className="flex flex-row items-center justify-between">
                     <p
                         className="cursor-pointer flex flex-row items-end justify-start gap-2
-                            hover:gap-3 transition-all duration-300 ease-in-out"
+                            hover:gap-3 transition-all duration-300 ease-in-out text-primary"
                         onClick={() => handleAllEventsClick()}
                     >
                         <p className="font-playfair text-[32px] font-medium leading-[1]">
@@ -85,7 +85,7 @@ function ClubUpdates({ events, blogs }) {
                 <div className="flex flex-row items-center justify-between">
                     <p
                         className="cursor-pointer flex flex-row items-end justify-start gap-2
-                            hover:gap-3 transition-all duration-300 ease-in-out"
+                            hover:gap-3 transition-all duration-300 ease-in-out text-primary"
                         onClick={() => handleAllBlogsClick()}
                     >
                         <p className="font-playfair text-[32px] font-medium leading-[1]">
@@ -129,8 +129,8 @@ ClubUpdates.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
-        image: PropTypes.string,
-        thumbnailColor: PropTypes.string,
+        image: PropTypes.string, // optional
+        thumbnailColor: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired,
         dateTime: PropTypes.string.isRequired,
     })).isRequired,

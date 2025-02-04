@@ -21,10 +21,11 @@ function BlogsThumb({ blog }) {
                 hover:cursor-pointer
                 hover:rotate-[0.4deg] hover:scale-[0.985]
                 flex flex-col ${!blog.image && "justify-end bg-secondary"}
-                border-grey-300 border-[2px] md:border-[1px]
+                border-tertiary border-[2px] md:border-[1px]
                 hover:border-[3px]
                 `}
             onClick={handleBlogClick}
+
         >
             {blog.image && (
                 <div className="w-full h-[150px]">
@@ -34,13 +35,13 @@ function BlogsThumb({ blog }) {
                 </div>
             )}
 
-            <div className={`flex flex-col gap-3 p-3 items-start justify-start 
+            <div className={`text-primary flex flex-col gap-3 p-3 items-start justify-start 
                 ${!blog.image && "rounded-[12px_12px_0_0] h-[90%] bg-complementPrimary"}
                 `}>
                 <p className="font-playfair text-[18px] font-medium leading-[1]">
                     {blog.title}
                 </p>
-                <p className="text-grey-500 text-[14px]">
+                <p className="text-[14px]">
                     {blog.description}
                 </p>
                 <button className="text-tertiary text-[14px] font-medium 

@@ -163,15 +163,16 @@ const stats = [
 ]
 
 // Latest few events
+// Everything is necessary except image
 const events = [
     {
-        id: "incident-24", // required
-        title: "Incident '24", // required
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.", //required
-        location: "Main Building, NITK", //required
-        dateTime: "2024-01-01 10:00 AM", //required
+        id: "incident-24",
+        title: "Incident '24",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+        location: "Main Building, NITK",
+        dateTime: "2024-01-01 10:00 AM",
         image: "https://img.freepik.com/free-photo/3d-modern-background-with-hot-pink-flowing-lines_1048-12263.jpg",
-        thumbnailColor: "#E195AB" //required
+        thumbnailColor: "#E195AB"
     },
     {
         id: "engineer-24",
@@ -204,6 +205,7 @@ const events = [
 
 
 // Top few blogs
+// Everything is necessary except image
 const blogs = [
     {
         id: "blog-1",

@@ -3,15 +3,6 @@ import { useParams } from 'react-router';
 function EventPage() {
     const { id } = useParams();
 
-    const fetchEventData = async () => {
-        try {
-            const response = await fetch(`/api/events/${id}`);
-            const data = await response.json();
-        } catch (error) {
-            console.error('Error fetching event:', error);
-        }
-    };
-
     return (
         <div className="max-w-container mx-auto px-container-px md:px-container-px-md py-8">
             <h1>Event #{id}</h1>
