@@ -76,7 +76,7 @@ function ClubUpdates({ events, blogs }) {
                         {events.map((event, index) => (
                             <EventsThumb event={event} key={index} />
                         ))}
-                        <ViewAllCard text="View All Events" link="/events" />
+                        <ViewAllCard text="All Events" link="/events" />
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ function ClubUpdates({ events, blogs }) {
                         {blogs.map((blog, index) => (
                             <BlogsThumb blog={blog} key={index} />
                         ))}
-                        <ViewAllCard text="View All Blogs" link="/blogs" />
+                        <ViewAllCard text="All Blogs" link="/blogs" />
                     </div>
                 </div>
             </div>

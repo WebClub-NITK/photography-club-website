@@ -1,6 +1,6 @@
 import { FaArrowCircleRight } from "react-icons/fa";
+import PropTypes from 'prop-types';
 import { useNavigate } from "react-router";
-import { Link } from "react-router";
 
 function ViewAllCard({ text, link }) {
 
@@ -18,24 +18,26 @@ function ViewAllCard({ text, link }) {
     }
 
     return (
-        <Link to={link}>
-            <div className={`min-w-[160px] mx-2 py-4 px-4
+        <div onClick={handleViewAllClick}>
+            <div className={`cursor-pointer min-w-[160px] mx-2 py-4 px-4
             bg-tertiary hover:bg-complementSecondary
-            rounded-[25px] text-white text-[16px] hover:text-primary
-            transition-all duration-300000 ease-linear
-            hover:duration-50000
-            shadow-[0_5px_10px_0_rgba(0,0,0,0.1)] hover:shadow-[0_10px_1px_0_rgba(0,0,0,0.2)]
+            rounded-[25px] text-white text-[16px] hover:text-primary font-bold
+            transition-all duration-200 ease-linear
+            hover:shadow-[0_10px_0px_0_rgba(0,0,0,0.2)]
             flex flex-row items-center justify-center gap-4`}
             >
-
-                <FaArrowCircleRight className="" size={20} />
-                <p className="font-medium">
+                <FaArrowCircleRight className="" size={30} />
+                <p>
                     {text}
                 </p>
             </div>
-        </Link>
+        </div>
     )
 }
 
+ViewAllCard.propTypes = {
+    text: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
+}
 
 export default ViewAllCard
