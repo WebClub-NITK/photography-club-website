@@ -2,6 +2,7 @@ import ScrollView from "../../components/util/ScrollView";
 import { FaAngleRight } from "react-icons/fa6";
 import EventsThumb from "../../components/events/eventsThumb";
 import BlogsThumb from "../../components/blogs/blogsThumb";
+import ViewAllCard from "../../components/util/ViewAllCard";
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react'
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ function ClubUpdates({ events, blogs }) {
     const eventsContainerRef = useRef(null);
     const blogsContainerRef = useRef(null);
     const navigate = useNavigate();
+
 
     const handleAllBlogsClick = () => {
         navigate(`/blogs`);
@@ -70,10 +72,11 @@ function ClubUpdates({ events, blogs }) {
                     className="overflow-x-auto overflow-y-hidden"
                     ref={eventsContainerRef}
                 >
-                    <div className="flex flex-row items-start gap-[14px] pt-2 pb-3">
+                    <div className="flex flex-row items-center gap-[14px] pt-2 pb-3">
                         {events.map((event, index) => (
                             <EventsThumb event={event} key={index} />
                         ))}
+                        <ViewAllCard text="View All Events" link="/events" />
                     </div>
                 </div>
             </div>
@@ -109,10 +112,11 @@ function ClubUpdates({ events, blogs }) {
                     className="overflow-x-auto overflow-y-hidden px-1"
                     ref={blogsContainerRef}
                 >
-                    <div className="flex flex-row items-start gap-[14px] pt-2 pb-3">
+                    <div className="flex flex-row items-center gap-[14px] pt-2 pb-3">
                         {blogs.map((blog, index) => (
                             <BlogsThumb blog={blog} key={index} />
                         ))}
+                        <ViewAllCard text="View All Blogs" link="/blogs" />
                     </div>
                 </div>
             </div>

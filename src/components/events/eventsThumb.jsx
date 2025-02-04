@@ -42,13 +42,17 @@ function EventsThumb({ event }) {
     };
 
     return (
-        <div className="relative min-w-[250px] md:min-w-[460px] lg:min-w-[490px] h-[380px] md:h-[260px] rounded-[8px] overflow-hidden
+        <div className="relative min-w-[250px] md:min-w-[460px] lg:min-w-[490px] h-[380px] md:h-[260px] rounded-[12px] overflow-hidden
                 transition-all duration-100
-                hover:cursor-pointer hover:shadow-[0px_3px_6px_0px_rgba(0,_0,_0,_0.3)] 
+                hover:cursor-pointer hover:shadow-[3px_3px_8px_1px_rgba(0,_0,_0,_0.3)] 
                 hover:rotate-[0.3deg] hover:scale-[0.985]
+                hover:border-[complementSecondary] hover:border-[3px]
                 "
             onClick={handleEventClick}
         >
+
+
+
             {/* Background color and noise overlay container */}
             <div
                 style={{ backgroundColor: thumbnailColor }}
