@@ -60,7 +60,8 @@ function About({ clubGallery, stats, learnMore }) {
                     />
                 </div>
                 <div
-                    className="overflow-x-hidden overflow-y-hidden"
+                    style={{ scrollbarWidth: "none" }}
+                    className="overflow-x-auto overflow-y-hidden"
                     ref={galleryRef}
                 >
                     <div className="flex flex-row items-start gap-[16px]">

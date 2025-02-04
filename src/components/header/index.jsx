@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import logo from "../../assets/images/temp-logo.png"
 import { FiCamera } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa";
@@ -10,9 +10,19 @@ import Button from "../Button"
 export default function Header() {
     const [nav, setNav] = useState(false)
     const { theme } = useTheme()
+    const navigate = useNavigate()
 
     const handleNav = () => {
         setNav(!nav)
+    }
+
+    const navigateTo = (url) => {
+        navigate(url)
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
     }
 
     return (
@@ -34,13 +44,13 @@ export default function Header() {
                     />
                 </Link>
                 <div className="hidden md:flex items-center justify-center gap-8 text-sm tracking-wide">
-                    <Link to="/" className="hover:text-red-500 transition-colors">
+                    <Link to="/events" className="hover:text-red-500 transition-colors">
                         Events
                     </Link>
                     <Link to="/portfolio" className="hover:text-red-500 transition-colors">
                         Members
                     </Link>
-                    <Link to="/" className="hover:text-red-500 transition-colors">
+                    <Link to="/blogs" className="hover:text-red-500 transition-colors">
                         Blogs
                     </Link>
                     <Link to="/photo-reels">
