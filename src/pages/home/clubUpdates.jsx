@@ -114,7 +114,7 @@ function ClubUpdates({ events, blogs }) {
                 >
                     <div className="flex flex-row items-center gap-[14px] pt-2 pb-3">
                         {blogs.map((blog, index) => (
-                            <BlogsThumb blog={blog} key={index} />
+                            <BlogsThumb blog={blog} key={index} variant="scroll" />
                         ))}
                         <ViewAllCard text="All Blogs" link="/blogs" />
                     </div>

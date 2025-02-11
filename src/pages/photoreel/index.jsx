@@ -19,7 +19,7 @@ const PhotoReels = () => {
     <>
       {/* Header Section */}
       <div className="mt-11 flex flex-col justify-center items-center gap-y-4 px-4 sm:px-6 lg:px-8">
-        <span className="text-center font-bold text-3xl border-[1.2px] border-black rounded-full px-4 py-2 w-auto sm:text-4xl lg:text-5xl">
+        <span className="text-center font-bold text-3xl border-[1.2px] border-black rounded-full px-8 py-3 w-auto sm:text-4xl lg:text-5xl">
           Photography Feed
         </span>
         <span className="text-md opacity-60 sm:text-lg lg:text-xl lg:max-w-2xl text-center">

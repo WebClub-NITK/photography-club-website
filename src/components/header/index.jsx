@@ -83,13 +83,13 @@ export default function Header() {
                         </div>
                     </div>
                     <div className='flex flex-col gap-6 mt-12'>
-                        <Link onClick={handleNav} to="/" className="hover:text-red-500 transition-colors">
+                        <Link onClick={handleNav} to="/events" className="hover:text-red-500 transition-colors">
                             Events
                         </Link>
                         <Link onClick={handleNav} to="/portfolio" className="hover:text-red-500 transition-colors">
                             Members
                         </Link>
-                        <Link onClick={handleNav} to="/" className="hover:text-red-500 transition-colors">
+                        <Link onClick={handleNav} to="/blogs" className="hover:text-red-500 transition-colors">
                             Blogs
                         </Link>
                         <hr className="border-gray-100" />
