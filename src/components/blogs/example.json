@@ -1,0 +1,9 @@
+action 
+    > open website(s)
+        > some number of uris
+        > context message
+    > open file(s)
+        > file: // type uris that we'll ask the user to browse and select
+        > context message
+    > system notification
+        > message

@@ -14,6 +14,7 @@ export default {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         tertiary: 'var(--tertiary)',
+        quaternary: 'var(--quaternary)',
         complementPrimary: 'var(--complement-primary)',
         complementSecondary: 'var(--complement-secondary)',
         accent1: 'var(--accent-1)',
