@@ -1,18 +1,56 @@
 import { Outlet, useParams } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dropdown from '../../components/filtersort/dropdown';
 import BlogsThumb from '../../components/blogs/blogsThumb';
 
 
 function Blogs() {
     const { id } = useParams();
+    const [allBlogs, setAllBlogs] = useState(blogs);
+    const [displayBlogs, setDisplayBlogs] = useState([]);
     const [filter, setFilter] = useState(0);
     const [sort, setSort] = useState(0);
+
+    const [blogTags, setBlogTags] = useState([]);
+    useEffect(() => {
+        const uniqueTags = [...new Set(blogs.flatMap(blog => blog.tags))];
+        setBlogTags(["All", ...uniqueTags]);
+    }, [allBlogs]);
+
+    useEffect(() => {
+        let result = [...allBlogs];
+        if (blogTags[filter] !== "All") {
+            result = result.filter(blog => blog.tags.includes(blogTags[filter]));
+        }
+
+        const sortValue = parseInt(sort);
+        switch (sortValue) {
+            case 0: // Latest
+                result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+                break;
+            case 1: // Oldest
+                result.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+                break;
+            case 2: // Top
+                result.sort((a, b) => (b.popularity_score || 0) - (a.popularity_score || 0));
+                break;
+            default:
+                break;
+        }
+
+        setDisplayBlogs(result);
+    }, [filter, sort, blogTags, allBlogs]);
+
+
+    const sortOptions = [
+        "Latest",
+        "Oldest",
+        "Top"
+    ]
 
     if (id) {
         return <Outlet />
     }
-
 
     return (
         <div className="max-w-container mx-auto px-container-px md:px-container-px-md py-8">
@@ -43,74 +81,65 @@ function Blogs() {
                 </div>
             </div>
 
-
-
             {/*Content part  */}
             <div className='mt-5'>
                 <div className='flex flex-col gap-4 md:grid md:grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3
                         md:gap-x-4 md:gap-y-8'>
-                    {blogs.map((blog, index) => (
+
+                    {displayBlogs.map((blog, index) => (
                         <BlogsThumb blog={blog} key={index} variant="grid" />
                     ))}
-
                 </div>
-
-
             </div>
 
 
         </div>
     )
 }
-
-
-const blogTags = [
-    "All",
-    "Camera",
-    "Wildlife",
-    "Video",
-    "Astrophotography",
-    "NITK",
-    "Life Ex"
-]
-
-const sortOptions = [
-    "Latest",
-    "Oldest",
-    "Top"
-]
-
-
-
 const blogs = [
     {
         id: "blog-1",
         title: "Title 1",
         description: "Short Description or first few lines of the blog",
+        date: "2025-01-03",
+        popularity_score: 10,
+        tags: ["Camera", "Wildlife"],
         image: "https://placehold.co/380x150",
     },
     {
         id: "blog-2",
         title: "Title 2",
         description: "Short Description or first few lines of the blog",
+        date: "2025-01-04",
+        popularity_score: 20,
+        tags: ["Camera", "Wildlife", "NITK"],
         image: "https://placehold.co/380x150",
     },
     {
         id: "blog-3",
         title: "Title 3",
         description: "Short Description or first few lines of the blog",
+        date: "2025-01-05",
+        popularity_score: 12,
+        tags: ["NITK", "Life Ex"],
         image: "https://placehold.co/380x150",
     },
     {
         id: "blog-4",
         title: "Title 4",
         description: "Short Description or first few lines of the blog",
+        date: "2025-01-06",
+        popularity_score: 15,
+        tags: ["Astrophotography", "NITK"],
         image: "https://placehold.co/380x150",
     },
     {
         id: "blog-5",
         title: "Title 5 - No Image",
         description: "Short Description or first few lines of the blog",
+        date: "2025-01-30",
+        popularity_score: 50,
+        tags: ["NITK"],
         image: null,
     }
 ]

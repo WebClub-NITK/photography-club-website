@@ -72,13 +72,7 @@ function EventsThumb({ event, thinVariant = false, variant = "scroll" }) {
 
             {/* Content container */}
             <div className="relative w-full h-full text-white text-[14px] font-medium flex flex-row">
-                {/* 
-                  Using absolute positioning for mobile (and relative on md) ensures the text overlays correctly.
-                  We structure the content into three parts:
-                  1. Title (always at the top)
-                  2. Description (middle, flexing to take available space and truncate overflow)
-                  3. Event details (always at the bottom)
-                */}
+                { }
                 <div className="absolute inset-0 p-4 flex flex-col justify-between h-full z-10 md:relative">
                     {/* Title at the top */}
                     <div>

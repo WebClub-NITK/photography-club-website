@@ -21,7 +21,7 @@ function BlogsThumb({ blog, variant = "scroll" }) {
                 hover:cursor-pointer
                 hover:rotate-[0.5deg] hover:scale-[0.98]
                 flex flex-col ${!blog.image && "justify-end bg-secondary"}
-                border-tertiary border-[2px] md:border-[1px]
+                border-tertiary border-[1px]
                 hover:border-tertiary
                 before:absolute before:inset-0 before:rounded-[12px]
                 before:border-tertiary before:border-[5px] before:opacity-0
