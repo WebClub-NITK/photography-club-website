@@ -3,6 +3,7 @@ import noiseImage from '../../assets/images/noise.png'
 import { GrLocation } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
 import { useNavigate } from 'react-router';
+import { navigateSmooth } from '../../utils/helperFunctions';
 
 /*
 *   Required thumbnail is of XxY size
@@ -10,16 +11,12 @@ import { useNavigate } from 'react-router';
 *   that blends with white text
 */
 
-function EventsThumb({ event, thinVariant = false, variant = "scroll" }) {
+function EventsThumb({ event, isOnHomePage = false, thinVariant = false, variant = "scroll" }) {
     const navigate = useNavigate();
-
+    
     const handleEventClick = () => {
-        navigate(`/events/${event.id}`);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        const fromPage = isOnHomePage ? 'home' : 'events';
+        navigateSmooth(navigate, `/events/${event.id}`, fromPage)
     }
 
     const thumbnailColor = event.thumbnailColor || '#000000';
@@ -137,6 +134,7 @@ EventsThumb.propTypes = {
         image: PropTypes.string,
         thumbnailColor: PropTypes.string,
     }).isRequired,
+    isOnHomePage: PropTypes.bool,
     thinVariant: PropTypes.bool,
     variant: PropTypes.oneOf(['scroll', 'grid']),
 };

@@ -6,6 +6,7 @@ import ScrollView from "../../components/util/ScrollView";
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
+import {navigateSmooth} from "../../utils/helperFunctions";
 
 function Hero({ photos }) {
     const scrollContainerRef = useRef(null);
@@ -13,12 +14,7 @@ function Hero({ photos }) {
     const navigate = useNavigate();
 
     const handlePhotoReelsClick = () => {
-        navigate('/photo-reels');
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        navigateSmooth(navigate, '/photo-reels');
     };
 
     return (

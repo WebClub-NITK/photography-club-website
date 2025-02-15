@@ -1,17 +1,13 @@
 import { FaAngleRight } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import PropTypes from 'prop-types';
+import { navigateSmooth } from "../../utils/helperFunctions";
 
 function BlogsThumb({ blog, variant = "scroll" }) {
     const navigate = useNavigate();
 
     const handleBlogClick = () => {
-        navigate(`/blogs/${blog.id}`);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        navigateSmooth(navigate, `/blogs/${blog.id}`)
     }
 
     return (

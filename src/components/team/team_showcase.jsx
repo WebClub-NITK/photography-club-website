@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { TeamMember } from "./team_member";
 import { TabContext } from "../../context/TabContext";
 import { useNavigate } from "react-router-dom";
+import { navigateSmooth } from "../../utils/helperFunctions";
 
 export function TeamShowcase() {
   const navigate = useNavigate();
@@ -18,13 +19,8 @@ export function TeamShowcase() {
 
   // Navigate to individual portfolio page
   const goToIndividualPortfolio = (id) => {
-    sessionStorage.setItem('scrollPosition', window.scrollY);
-    navigate(`/portfolio/${id}`);
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
+    sessionStorage.setItem('scrollPositionY', window.scrollY);
+    navigateSmooth(navigate, `/portfolio/${id}`);
   };
 
   return (

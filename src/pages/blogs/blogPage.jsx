@@ -106,7 +106,7 @@ function BlogPage() {
                             onClick={() => handleAllBlogsClick()}
                         >
                             <p className="text-tertiary text-[16px] font-bold uppercase">
-                                More Blogs.
+                                More Blogs
                             </p>
                             <FaAngleRight className="text-tertiary text-[16px] font-bold uppercase" />
                         </p>

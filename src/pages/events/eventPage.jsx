@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import noiseImage from '../../assets/images/noise.png'
@@ -6,21 +6,25 @@ import { ArrowLeft } from "lucide-react";
 import { GrLocation } from "react-icons/gr";
 import { MdEvent } from 'react-icons/md';
 import { formatDateTime, getDifference } from '../../utils/dateHelpers';
+import { navigateSmooth } from '../../utils/helperFunctions';
 
 
 function EventPage() {
-    const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Determine if user came from home page
+    const isFromHome = location.state?.from === 'home';
+    const path = isFromHome ? '/' : '/events';
 
     const backToPrevious = () => {
-        navigate("/events");
-        if (sessionStorage.getItem('scrollPosition')) {
-            window.scrollTo({
-                top: parseInt(sessionStorage.getItem('scrollPosition')),
-                behavior: "smooth",
-            });
+        const scrollPositionY = sessionStorage.getItem('scrollPositionY');
+       
+        navigateSmooth(navigate, path, "", parseInt(scrollPositionY || 0));
+       
+        if(scrollPositionY) {
+            sessionStorage.removeItem('scrollPositionY');
         }
-        sessionStorage.removeItem('scrollPosition');
     };
 
     return (
@@ -30,7 +34,7 @@ function EventPage() {
                 className="flex items-center text-quaternary hover:text-primary mb-8 group"
             >
                 <ArrowLeft className="h-5 w-5 mr-2 transition-transform group-hover:-translate-x-1" />
-                All Events
+                {isFromHome ? "Go Back" : "All Events"}
             </button>
 
             <div className='relative z-[1] flex flex-col items-center gap-2 px-2 md:px-4 pt-5 mb-4 cursor-default'>

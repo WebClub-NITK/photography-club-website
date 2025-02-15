@@ -6,6 +6,7 @@ import ViewAllCard from "../../components/util/ViewAllCard";
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react'
 import PropTypes from 'prop-types';
+import { navigateSmooth } from "../../utils/helperFunctions";
 
 
 function ClubUpdates({ events, blogs }) {
@@ -17,21 +18,11 @@ function ClubUpdates({ events, blogs }) {
 
 
     const handleAllBlogsClick = () => {
-        navigate(`/blogs`);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        navigateSmooth(navigate, "/blogs")
     }
 
     const handleAllEventsClick = () => {
-        navigate(`/events`);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        navigateSmooth(navigate, "/events")
     }
 
 
@@ -74,7 +65,7 @@ function ClubUpdates({ events, blogs }) {
                 >
                     <div className="flex flex-row items-center gap-[14px] pt-2 pb-3">
                         {events.map((event, index) => (
-                            <EventsThumb event={event} key={index} />
+                            <EventsThumb event={event} key={index} isOnHomePage/>
                         ))}
                         <ViewAllCard text="All Events" link="/events" />
                     </div>
