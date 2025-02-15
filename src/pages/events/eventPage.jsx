@@ -19,10 +19,10 @@ function EventPage() {
 
     const backToPrevious = () => {
         const scrollPositionY = sessionStorage.getItem('scrollPositionY');
-       
+
         navigateSmooth(navigate, path, "", parseInt(scrollPositionY || 0));
-       
-        if(scrollPositionY) {
+
+        if (scrollPositionY) {
             sessionStorage.removeItem('scrollPositionY');
         }
     };
@@ -97,6 +97,7 @@ function EventPage() {
                         "data-color-mode": "light"
                     }}
                     source={thisEvent.content}
+                    className="wmde-markdown"
                 />
             </div>
         </div>

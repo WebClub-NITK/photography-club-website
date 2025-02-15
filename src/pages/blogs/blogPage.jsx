@@ -69,15 +69,15 @@ function BlogPage() {
             {/* Blog Content */}
             <div className='md:w-[80%] lg:w-[60%] max-w-full md:max-w-container px-container-px py-5 pt-0 mx-auto md:py-7 md:px-container-px-md'>
                 <div className='flex flex-col gap-2 justify-center py-6 pt-5 md:pt-0'>
-                    <h1 className='text-[32px] font-black md:text-center pb-3'>
+                    <h1 className='text-[32px] font-black md:text-center pb-3 pointer-events-none'>
                         {blog.title}
                     </h1>
                     <div className='flex flex-col md:items-center justify-center gap-2 md:gap-5'>
-                        <span className='flex items-center gap-1 font-bold text-sm text-gray-500'>
+                        <span className='flex items-center gap-1 font-bold text-sm text-gray-500 cursor-pointer'>
                             <FaRegUser />
                             {blog.author_id}
                         </span>
-                        <div className='flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-5'>
+                        <div className='flex flex-col md:flex-row md:items-center justify-center gap-2 md:gap-5 pointer-events-none'>
                             <span className='flex items-center gap-1 text-sm text-gray-500'>
                                 <FaClock />
                                 {calculateReadingTime(blog.content)}
@@ -87,6 +87,15 @@ function BlogPage() {
                                 {formatDate(blog.date)}
                             </span>
                         </div>
+                        <div className='pointer-events-none max-w-[70%] text-center'>
+                            {blog.tags.map((tag, index) => (
+                                <span key={index} className='text-xs text-quaternary'>
+                                    {tag}
+                                    {index !== blog.tags.length - 1 && <span>&nbsp;⎯&nbsp;</span>}
+                                </span>
+                            ))}
+
+                        </div>
                     </div>
                 </div>
                 <div className="">
@@ -95,6 +104,7 @@ function BlogPage() {
                             "data-color-mode": "light"
                         }}
                         source={blog.content}
+                        className="wmde-markdown"
                     />
                 </div>
                 {/* Blogs */}
@@ -147,10 +157,11 @@ const blog = {
     image: "https://placehold.co/380x150",
     title: "Why you not having a DSLR is not the reason you can't take good photos.",
     date: "2025-01-03",
+    tags: ["NITK", "Photography", "Wildlife", "Club Trip"],
     content: `
 ## Introduction
 
-Many beginner photographers believe that **not owning a DSLR** is what holds them back from capturing great photos. But the truth is, **photography is about skill, not just gear.** In this post, we’ll explore why your camera isn’t the problem and what actually makes a great photo.
+Many beginner photographers believe that **not owning a DSLR** is what holds them back from capturing great photos. But the truth is, **photography is about skill, not just gear.** In this post, we'll explore why your camera isn't the problem and what actually makes a great photo.
 
 ## The Real Factors Behind Great Photos
 
@@ -185,7 +196,7 @@ console.log("Try these tools to enhance your photos:", freeEditingTools);
 
 ## Myth: "DSLRs Take Better Photos By Default"
 
-Here’s a fun test: Compare an iPhone shot vs. a DSLR shot taken in **bad lighting** with **poor composition**. The result? The phone shot may look better!
+Here's a fun test: Compare an iPhone shot vs. a DSLR shot taken in **bad lighting** with **poor composition**. The result? The phone shot may look better!
 
 ## Test Image Embedding
 
