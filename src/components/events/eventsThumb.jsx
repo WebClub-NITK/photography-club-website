@@ -3,6 +3,7 @@ import noiseImage from '../../assets/images/noise.png'
 import { GrLocation } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
 import { useNavigate } from 'react-router';
+import { navigateSmooth } from '../../utils/helperFunctions';
 
 /*
 *   Required thumbnail is of XxY size
@@ -10,16 +11,12 @@ import { useNavigate } from 'react-router';
 *   that blends with white text
 */
 
-function EventsThumb({ event }) {
+function EventsThumb({ event, isOnHomePage = false, thinVariant = false, variant = "scroll" }) {
     const navigate = useNavigate();
-
+    
     const handleEventClick = () => {
-        navigate(`/events/${event.id}`);
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        const fromPage = isOnHomePage ? 'home' : 'events';
+        navigateSmooth(navigate, `/events/${event.id}`, fromPage)
     }
 
     const thumbnailColor = event.thumbnailColor || '#000000';
@@ -42,17 +39,22 @@ function EventsThumb({ event }) {
     };
 
     return (
-        <div className="relative min-w-[250px] md:min-w-[460px] lg:min-w-[490px] h-[380px] md:h-[260px] rounded-[12px] overflow-hidden
+        <div
+            onClick={handleEventClick}
+            className={`relative overflow-hidden rounded-[12px]
                 transition-all duration-100
                 hover:cursor-pointer hover:shadow-[3px_3px_8px_1px_rgba(0,_0,_0,_0.3)] 
                 hover:rotate-[0.3deg] hover:scale-[0.985]
                 hover:border-[complementSecondary] hover:border-[3px]
-                "
-            onClick={handleEventClick}
+                ${variant === "scroll"
+                    ? "min-w-[250px] md:min-w-[460px] lg:min-w-[490px] lg:max-w-[80%]"
+                    : "w-full"
+                }
+                ${thinVariant
+                    ? 'h-[280px] md:h-[260px]'
+                    : 'h-[380px] md:h-[260px]'
+                }`}
         >
-
-
-
             {/* Background color and noise overlay container */}
             <div
                 style={{ backgroundColor: thumbnailColor }}
@@ -67,34 +69,41 @@ function EventsThumb({ event }) {
 
             {/* Content container */}
             <div className="relative w-full h-full text-white text-[14px] font-medium flex flex-row">
-                <div className="w-full p-4
-                    flex flex-col gap-4 justify-between
-                    z-10 md:z-0
-                    absolute md:relative"
-                >
-                    <div className="flex flex-col gap-3">
+                { }
+                <div className="absolute inset-0 p-4 flex flex-col justify-between h-full z-10 md:relative">
+                    {/* Title at the top */}
+                    <div>
                         <p className="font-playfair text-[32px] font-medium leading-[1]">
                             {event.title}
                         </p>
-                        <p>
+                    </div>
+
+                    {/* Description truncates if more than available space */}
+                    <div className="flex-1 my-2 overflow-hidden">
+                        <p className="line-clamp-4">
                             {event.description}
                         </p>
                     </div>
+
+                    {/* Event details at the bottom */}
                     <div className="flex flex-col md:flex-row md:gap-2 gap-3 mt-2 text-[14px] font-light">
-                        <p className="flex flex-row items-top gap-2">
+                        <p className="flex flex-row items-center gap-2">
                             <GrLocation className="text-[20px]" />
                             {event.location}
                         </p>
-                        <p className="flex flex-row items-top gap-2">
+                        <p className="flex flex-row items-center gap-2">
                             <MdEvent className="text-[20px]" />
                             <span>{formatDateTime(event.dateTime)}</span>
                         </p>
                     </div>
                 </div>
                 {event.image && (
-                    <div className="relative w-full md:w-[200px] h-full">
+                    <div className={`relative object-cover object-center h-full
+                        ${variant === "scroll" ? "md:w-[200px]" : "md:w-[280px]"}
+                        w-full`}
+                    >
                         <img src={event.image} alt={event.title}
-                            className="h-full object-cover rounded-[0_8px_8px_0]"
+                            className="absolute inset-0 w-full h-full object-cover rounded-[0_8px_8px_0]"
                         />
                         {/* Overlay To Tint Image */}
                         <div
@@ -125,6 +134,9 @@ EventsThumb.propTypes = {
         image: PropTypes.string,
         thumbnailColor: PropTypes.string,
     }).isRequired,
+    isOnHomePage: PropTypes.bool,
+    thinVariant: PropTypes.bool,
+    variant: PropTypes.oneOf(['scroll', 'grid']),
 };
 
-export default EventsThumb
+export default EventsThumb;

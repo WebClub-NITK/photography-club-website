@@ -1,20 +1,14 @@
 import { FaArrowCircleRight } from "react-icons/fa";
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router";
+import {navigateSmooth} from "../../utils/helperFunctions"
 
 function ViewAllCard({ text, link }) {
 
     const navigate = useNavigate();
 
     const handleViewAllClick = () => {
-        navigate(link);
-        window.scrollTo(
-            {
-                top: 0,
-                left: 0,
-                behavior: "smooth"
-            }
-        )
+        navigateSmooth(navigate, link)
     }
 
     return (

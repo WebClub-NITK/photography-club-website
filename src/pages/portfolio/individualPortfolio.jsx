@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import PhotoGrid from "../../components/portfolio/PhotoGrid";
 import UserCard from "../../components/portfolio/UserCard";
 import { TabContext } from "../../context/TabContext";
+import { navigateSmooth } from "../../utils/helperFunctions";
 
 const IndividualPortfolio = () => {
   const navigate = useNavigate();
@@ -12,18 +13,18 @@ const IndividualPortfolio = () => {
 
   // Find the photographer by ID
   const photographer = teamMembers.find((member) => member.id === id);
+
   const backToPrevious = () => {
     // navigate(-1) -> gives a choppy transition between pages
     navigate("/portfolio");
 
-    if(sessionStorage.getItem('scrollPosition')){
-      window.scrollTo({
-        top: parseInt(sessionStorage.getItem('scrollPosition')),
-        behavior: "smooth",
-      });
-    }
+    const scrollPositionY = sessionStorage.getItem('scrollPositionY');
 
-    sessionStorage.removeItem('scrollPosition');
+    navigateSmooth(navigate, "/portfolio", "", parseInt(scrollPositionY || 0));
+
+    if(scrollPositionY) {
+      sessionStorage.removeItem('scrollPositionY');
+    }
   };
 
   // Handle invalid photographer ID
