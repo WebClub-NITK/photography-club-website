@@ -99,10 +99,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col gap-4">
           <p className="text-center text-sm text-gray-600">
             © {new Date().getFullYear()} Photography Club NITK. All rights
             reserved.
+          </p>
+          <p className="text-center text-sm text-gray-600">
+              Made with 💙 by <a className="underline text-blue-600" href="https://webclub.nitk.ac.in" target="_blank" rel="noopener noreferrer">Web Enthusiasts&apos; Club NITK</a>
           </p>
         </div>
       </div>
