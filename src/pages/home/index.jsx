@@ -7,7 +7,7 @@ import photo2 from '../../assets/images/placeholder-images/photography2.png'
 
 export default function HomePage() {
 
-    const specialNotices = ["Recruitment for 2028 batch has began."]
+    const specialNotices = ["Recruitment for 2028 batch has begun."]
     const onJoin = (e) => {
         e.preventDefault();
         console.log("Join button clicked");
