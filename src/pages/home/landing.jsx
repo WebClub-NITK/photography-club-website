@@ -11,7 +11,7 @@ function Landing({ onJoin, specialNotices }) {
             <div className="absolute inset-0">
                 <img src={landingImg}
                     alt="landing"
-                    className="w-full h-full brightness-90"
+                    className="w-full h-full object-cover brightness-90"
                 />
             </div>
 
