@@ -84,7 +84,7 @@ function EventPage() {
                 {eventImages.map((image, index) => (
                     <div key={index} className="relative group">
                         <img src={image.src} alt={`Event ${index + 1}`} className="w-full h-40 object-cover rounded-lg cursor-pointer" onClick={() => setSelectedImage(image.src)} />
-                        <button onClick={() => downloadImage(image.src, image.name)} className="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition">
+                        <button onClick={() => downloadImage(image.src, image.name)} className="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-100 md:opacity-0 md:group-hover:opacity-100 transition">
                             <MdDownload size={20} />
                         </button>
                     </div>
