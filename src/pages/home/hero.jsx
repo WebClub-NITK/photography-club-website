@@ -64,8 +64,8 @@ function Hero({ photos }) {
                                 src={image.image}
                                 alt="club-gallery"
                                 key={index}
-                                className="w-full h-[300px] md:h-[450px] lg:h-[500px] 
-                                rounded-[8px] md:rounded-[12px] object-cover"
+                                className="w-auto h-[300px] md:h-[450px] lg:h-[500px] 
+                                rounded-[8px] md:rounded-[12px] object-contain mx-auto"
                                 style={{
                                     minWidth: "100%", // Ensures only one image is visible
                                     maxWidth: "100%", 
