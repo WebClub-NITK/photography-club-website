@@ -5,6 +5,7 @@ import { MdOutlineOpenInNew } from "react-icons/md";
 import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import ScrollView from "../../components/util/ScrollView";
 import { navigateSmooth } from "../../utils/helperFunctions";
 
 function Hero({ photos }) {
@@ -100,6 +101,15 @@ function Hero({ photos }) {
                                     <p>Open Photo</p>
                                 </p>
                             </Link>
+                             <ScrollView
+                                currentIndex={currentImageIndex}
+                                setCurrentIndex={setCurrentImageIndex}
+                                totalImages={photos.length}
+                                scrollType="single"
+                                containerRef={scrollContainerRef}
+                                centerCalculation={true}
+                                imageGap={20}
+                            />
                         </div>
                     </div>
                 </div>
