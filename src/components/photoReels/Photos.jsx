@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import photos from "../../utils/photos.json";
 import Button from "../Button";
 import { FiX } from "react-icons/fi";
@@ -131,18 +131,20 @@ const Photos = () => {
       {/* Photo Modal */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4 overflow-auto"
+          className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4 sm:p-6 h-screen overflow-hidden"
           onClick={() => setSelectedPhoto(null)}
         >
+          {/* Close Button */}
           <button
-            className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100"
+            className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-gray-100"
             onClick={() => setSelectedPhoto(null)}
           >
-            <FiX className="w-6 h-6" />
+            <FiX className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
+          {/* Modal Content */}
           <div
-            className="max-w-5xl w-full flex flex-col md:flex-row gap-8 bg-white shadow-lg rounded-2xl p-6 overflow-hidden"
+            className="max-w-full sm:max-w-5xl w-full max-h-screen sm:h-auto flex flex-col md:flex-row gap-6 sm:gap-8 bg-white shadow-lg rounded-2xl p-4 sm:p-6 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image Container */}
@@ -150,14 +152,14 @@ const Photos = () => {
               <img
                 src={selectedPhoto.img}
                 alt={selectedPhoto.title}
-                className="max-w-full max-h-[80vh] object-cover rounded-2xl"
+                className="max-w-full max-h-[60vh] sm:max-h-[80vh] object-cover rounded-2xl"
               />
             </div>
 
-            {/* Details Section */}
-            <div className="w-full md:w-80 flex flex-col">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-gray-100 overflow-hidden">
+            {/* Scrollable Details Section */}
+            <div className="w-full md:w-80 flex flex-col overflow-y-auto max-h-[80vh]">
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 overflow-hidden">
                   <img
                     src={selectedPhoto.photographerAvatar}
                     alt={selectedPhoto.photographer}
@@ -166,18 +168,20 @@ const Photos = () => {
                 </div>
                 <div>
                   <h3 className="font-medium">{selectedPhoto.photographer}</h3>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs sm:text-sm text-gray-500">
                     {selectedPhoto.location}
                   </p>
                 </div>
               </div>
 
-              <h2 className="text-xl font-light mb-4">{selectedPhoto.title}</h2>
-              <p className="text-gray-600 text-sm mb-6">
+              <h2 className="text-lg sm:text-xl font-light mb-2 sm:mb-4">
+                {selectedPhoto.title}
+              </h2>
+              <p className="text-gray-600 text-sm mb-4 sm:mb-6">
                 {selectedPhoto.description}
               </p>
 
-              <div className="space-y-2 text-sm text-gray-500">
+              <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-500">
                 <div>
                   <span className="font-medium">Camera:</span>{" "}
                   {selectedPhoto.camera}
