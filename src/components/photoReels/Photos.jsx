@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import photos from "../../utils/photos.json";
 import Button from "../Button";
 import { FiX } from "react-icons/fi";
@@ -131,7 +131,7 @@ const Photos = () => {
       {/* Photo Modal */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4 sm:p-6 h-screen overflow-hidden"
+          className="fixed inset-0 bg-white z-50 flex items-center justify-center sm:p-6 h-screen overflow-hidden"
           onClick={() => setSelectedPhoto(null)}
         >
           {/* Close Button */}
