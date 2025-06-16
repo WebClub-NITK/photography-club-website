@@ -27,6 +27,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
           {/* Brand */}
           <div className="col-span-1">
             <div className="flex items-center gap-2">
@@ -72,7 +73,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
+          
           {/* Social */}
           <div className="col-span-1">
             <h3 className="font-medium mb-4">Follow Us</h3>
@@ -100,6 +101,14 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col gap-4">
+          <p className="text-center text-sm text-gray-600">
+              <button
+                  onClick={() => handleNavigation("/login")}
+                  className="text-left hover:text-red-500 transition-colors border border-red-500 rounded-md px-2 py-1"
+                >
+                  Login as Club Member
+                </button>
+          </p>
           <p className="text-center text-sm text-gray-600">
             © {new Date().getFullYear()} Photography Club NITK. All rights
             reserved.

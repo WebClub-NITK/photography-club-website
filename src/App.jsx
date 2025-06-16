@@ -15,13 +15,17 @@ import IndividualPortfolio from "./pages/portfolio/individualPortfolio";
 import { ThemeProvider } from "./context/ThemeContext";
 import PortfolioLayout from "./pages/portfolio/index";
 
+import Login from "./pages/login"
+import AdminLogin from "./pages/adminLogin"
+import AdminPortal from "./pages/admin"
+
 export default function App() {
   return (
     <div>
       <ThemeProvider>
-        <div className="bg-complementPrimary">
+        <div className="bg-complementPrimary min-h-screen flex flex-col">
           <Header />
-          <div className="pt-[65px]">
+          <div className="pt-[65px] flex-grow">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/portfolio" element={<PortfolioLayout />}>
@@ -33,9 +37,15 @@ export default function App() {
               <Route path="/events" element={<Events />}>
                 <Route path=":id" element={<EventPage />} />
               </Route>
+
               <Route path="/blogs" element={<Blogs />}>
                 <Route path=":id" element={<BlogPage />} />
               </Route>
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={<AdminPortal />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              
 
             </Routes>
           </div>
