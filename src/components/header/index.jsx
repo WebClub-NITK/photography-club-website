@@ -43,6 +43,12 @@ const navigationLinks = [
 export default function Header() {
     const [nav, setNav] = useState(false)
     const { theme } = useTheme()
+    
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+
+
+
     const navigate = useNavigate()
 
     const handleNav = () => {
@@ -56,7 +62,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="z-10 fixed top-0 left-0 right-0 h-[70px] bg-white/80 backdrop-blur-xl border-b border-gray-200 flex justify-between items-center px-container-px md:px-container-px-md">
+            <header className="z-10 fixed top-0 left-0 right-0 h-[70px] bg-white/80 backdrop-blur-2xl border-b border-gray-200 flex justify-between items-center px-container-px md:px-container-px-md">
                 <Link to="/" onClick={() => navigateSmooth(navigate, '/', 'header')}>
                     <img
                         src={logo}
@@ -87,11 +93,14 @@ export default function Header() {
                 <div onClick={handleNav} className='block md:hidden'>
                     <AiOutlineMenu size={20} />
                 </div>
-                <div className="hidden md:block">
-                    <Button variant="secondary" size="sm" icon={<FaRegUser />}>
-                        Club Member
-                    </Button>
-                </div>
+
+                {/* { isLoggedIn ? 
+                    <div className="hidden md:block">
+                        <Button variant="secondary" size="sm" icon={<FaRegUser />}>
+                            Club Member
+                        </Button>
+                    </div>  : <div></div>
+                } */}
             </header>
 
             {/* Mobile Menu */}
